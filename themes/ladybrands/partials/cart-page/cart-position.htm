@@ -1,0 +1,132 @@
+{% set obCartPositionList = Cart.get() %}
+{% set obCouponList =  Cart.getAppliedCouponList() %}
+
+{% set code = user.getCouponListAttribute().first().code %}
+
+{% set isActiveCoupon = false %}
+{% for obCoupon in obCouponList %}
+
+  {% if obCoupon.group_id == 1 %}
+    {% set isActiveCoupon = true %}
+  {% endif %}
+{% endfor %}
+
+
+ {% if obCartPositionList.isNotEmpty() %}
+   <table class="table ">
+     <thead>
+
+     <th class="col-md-2"></th>
+     <th class="col-md-4">Название</th>
+     <th class="col-md-2 price-column">Цена</th>
+     <th class="col-md-1 ">Количество</th>
+     <th class="col-md-2 price-column">Итого</th>
+     <th class="col-md-1">&nbsp;</th>
+     </tr>
+     </thead>
+     <tbody>
+     {% for obCartPosition in obCartPositionList %}
+
+       {% set obOffer = obCartPosition.item %}
+       {% set obProduct = obOffer.product %}
+
+       {% if obProduct.preview_image.title is not empty %}
+         {% set imageALT = obProduct.preview_image.title %}
+       {% elseif obProduct.preview_image.description is not empty %}
+         {% set imageALT = obProduct.preview_image.description %}
+       {% else %}
+         {% set imageALT = obProduct.preview_image.file_name %}
+       {% endif %}
+
+       <tr>
+         <td>
+           <div class="thumb">
+             <a href="{{ obProduct.getPageUrl('catalog-routing') }}">
+               <picture>
+                 <source type="image/webp"
+                         srcset="{{ obProduct.preview_image | resize(120, 120, { 'mode': 'crop', 'quality': '85', 'extension': 'webp' }) }}">
+                 <img loading="lazy" src="{{ obProduct.preview_image | resize(120, 120, { 'mode': 'crop'}) }}"
+                      alt="{{ imageALT }}" width="120" height="120">
+               </picture>
+             </a>
+           </div>
+         </td>
+         <td>
+           <div class="desc">
+             <h3>{{ obProduct.name }}</h3>
+
+             <div class="pid">Артикул: {{ obProduct.code }}</div>
+           </div>
+
+         </td>
+         <td>
+
+           <div class="price">
+             {{ obOffer.price }}  {{ obOffer.currency }}
+           </div>
+
+         </td>
+         <td style="vertical-align: middle;">
+           <div style="display: flex;" class=" _shopaholic-product-wrapper" data-position-id="{{ obCartPosition.id }}">
+             <div class="div-table minus _shopaholic-cart-decrease-quantity">
+               <div class="div-table-cell">-</div>
+             </div>
+
+             <input style="width: 50px; text-align: center;" class="_shopaholic-cart-quantity" type="number" name="quantity"
+                    value="{{ obCartPosition.quantity }}" min="1">
+             <div class="div-table plus _shopaholic-cart-increase-quantity">
+               <div class="div-table-cell">+</div>
+             </div>
+
+           </div>
+         </td>
+
+         <td>
+
+           <div class="price">
+             {{ obCartPosition.quantity * obOffer.price }} {{ obOffer.currency }}
+           </div>
+
+         </td>
+
+         <td>
+
+           <div class="delete _shopaholic-product-wrapper" data-position-id="{{ obCartPosition.id }}">
+             <a class="close-btn _shopaholic-cart-remove" href="#"></a>
+           </div>
+
+         </td>
+       </tr>
+
+     {% endfor %}
+     <tr>
+       <td>
+       </td>
+
+       <td colspan="2">
+         <div class="total-text">
+           Итоговая цена
+         </div>
+       </td>
+       <td>
+       </td>
+       <td>
+         <div class="price-column total_price">
+           {{ obCartPositionList.getTotalPrice() }} {{ obCartPositionList.getCurrency() }}
+         </div>
+       </td>
+     </tr>
+     </tbody>
+   </table>
+
+   <div class="buttons-holder">
+     <a class="cusmo-btn gray narrow _clear_basket _shopaholic-cart-clear" href="#">Очистить корзину</a>
+     <a class="cusmo-btn gray narrow" onclick="history.back();" href="#">Продолжить покупки</a>
+     {% if code and isActiveCoupon == false %}
+       <a class="cusmo-btn gray narrow _add_cupon" href="#"
+          data-cupon-code="{{ user.getCouponListAttribute().first().code }}">Применить скидку</a>
+     {% endif %}
+   </div>
+ {% else %}
+   <div>В корзине нет товаров</div>
+ {% endif %}

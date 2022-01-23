@@ -1,0 +1,90 @@
+
+<div class="container">
+
+  <div class="row">
+
+    <div class="col-md-9 col-5">
+      <div class="left">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse top-menu header-menu" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto list-inline">
+              {% for item in menu %}
+
+              <li class="nav-item ">
+                <a href="{{ item.url }}">{{ item.title }}</a>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+  <div class="col-md-3 col-7"><div class="phone"><a href="tel:{{ SiteSettings.get('phone_1') }}"><i class="fa fa-phone"></i> {{ SiteSettings.get('phone_1') }}</a></div></div>
+
+  </div>
+
+  <div class="d-md-flex d-sm-block row justify-content-between top-row">
+
+    <div class="logo-holder col-12 col-md-4">
+      <div class="logo">
+        <a href="/">
+          <img alt="Lady Brands" src="{{ 'assets/images/logo.png'|theme }}" class="img-fluid"/>
+        </a>
+      </div>
+    </div>
+
+      <div class="col-md-auto col-12">
+        <div class="search-field-holder">
+          <form action="/search">
+            <input class="col-12" type="text" name="q" placeholder="Поиск" value="{{ app.request.post('q') }}">
+            <button type="submit"><i class="fa fa-search"></i></button>
+          </form>
+        </div>
+      </div>
+
+
+    <div class="cart-holder col-12 col-md-auto">
+      <div class="top-menu cart-margin">
+        <ul class="nav justify-content-center">
+          <li class="_wishlist_wrapper">
+            {% partial('header/wishlist') %}
+          </li>
+          <li class="no-after d-none d-sm-block">
+            <div class="doviz-dropdown">
+              {% if user %}
+
+                {% for item in menuLogout %}
+               <a href="{{ item.url }}">{{  item.title }}</a>
+                {% endfor %}
+
+
+              {% else %}
+                <a href="#myModal" data-toggle="modal">
+                  Войти
+                </a>
+                <ul class="dropdown-menu" >
+                  {% for item in menuLogin %}
+                    <li><a href="{{ item.url }}">{{  item.title }}</a></li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+
+            </div>
+          </li>
+
+          <li class="basket _basket_wrapper">
+            {% partial('header/cart-info') %}
+          </li>
+
+        </ul>
+
+      </div>
+    </div>
+  </div>
+  </div>
+
+
+</div>

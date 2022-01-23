@@ -1,0 +1,14 @@
+fields:
+    value:
+        label: 'lovata.toolbox::lang.field.value'
+        span: left
+        type: text
+    slug:
+        label: 'lovata.toolbox::lang.field.slug'
+        span: right
+        disabled: 1
+        type: text
+    label:
+        label: 'lovata.toolbox::lang.field.label'
+        span: left
+        type: text

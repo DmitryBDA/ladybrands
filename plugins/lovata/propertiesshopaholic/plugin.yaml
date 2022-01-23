@@ -1,0 +1,15 @@
+plugin:
+    name: 'lovata.propertiesshopaholic::lang.plugin.name'
+    description: 'lovata.propertiesshopaholic::lang.plugin.description'
+    author: Lovata
+    icon: oc-icon-th-list
+    homepage: ''
+permissions:
+    shopaholic-menu-property:
+        tab: 'lovata.shopaholic::lang.tab.permissions'
+        label: 'lovata.propertiesshopaholic::lang.permission.property'
+        order: 400
+    shopaholic-menu-group:
+        tab: 'lovata.shopaholic::lang.tab.permissions'
+        label: 'lovata.propertiesshopaholic::lang.permission.group'
+        order: 500

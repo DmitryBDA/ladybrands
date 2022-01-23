@@ -1,0 +1,129 @@
+description = "Шаблон по для статических страниц"
+
+[staticPage]
+useContent = 1
+default = 0
+
+[staticMenu headerMenu]
+code = "headerMenu"
+
+
+[staticMenu footermenu1]
+code = "footermenu1"
+
+[staticMenu footermenu2]
+code = "footermenu2"
+
+[staticMenu footermenu3]
+code = "footermenu3"
+
+[SiteSettings]
+==
+<?php
+function onInit()
+{
+   $arBreadcrumbs[] = [
+    'name' => $this->page->title,
+    'url' => '',
+    'active' => true,
+  ];
+
+  $arBreadcrumbs[] = [
+  'name' => 'Главная',
+  'url' => \Cms\Classes\Page::url('index'),
+  'active' => false,
+  ];
+
+  $arBreadcrumbs = array_reverse($arBreadcrumbs);
+
+  $this['arBreadcrumbs'] = $arBreadcrumbs;
+}
+
+function onStart()
+{
+$this->addCss([
+'~/modules/system/assets/css/framework.extras.css',
+'assets/css/bootstrap.min.css',
+'assets/css/font-awesome/css/font-awesome.min.css',
+'assets/css/slick.css',
+'assets/css/slick-theme.css',
+'assets/css/dataslider.css',
+'assets/css/chosen.css',
+'assets/css/icheck/minimal/yellow.css',
+'assets/css/style.css',
+'assets/css/responsive.css',
+]);
+
+$this->addJs([
+'assets/js/jquery-3.6.min.js',
+'~/modules/system/assets/js/framework.js',
+'~/modules/system/assets/js/framework.extras.js',
+'assets/js/jquery-migrate-1.1.1.min.js',
+'assets/js/popper.min.js',
+'assets/js/bootstrap.min.js',
+'assets/js/css_browser_selector.js',
+'assets/js/twitter-bootstrap-hover-dropdown.min.js',
+'assets/js/jquery.easing-1.3.js',
+'assets/js/jquery.flexslider-min.js',
+'assets/js/chosen.jquery.min.js',
+'assets/js/jquery.raty.min.js',
+'assets/js/bootstrap-slider.js',
+'assets/js/slick.min.js',
+'assets/js/jquery.carouFredSel-6.2.1-packed.js',
+'assets/js/jquery.icheck.min.js',
+'assets/js/maskedinput.js',
+'assets/js/script.js',
+'assets/javascript/default.js',
+
+]);
+}
+?>
+==
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+
+  {% partial 'layout-components/meta' %}
+
+  {% partial 'layout-components/styles' %}
+
+</head>
+<body class="homepage2">
+
+<div class="wrapper">
+
+  <section class="section-head">
+    {% partial 'layout-components/header' menu=headerMenu.menuItems %}
+
+    {% partial 'layout-components/top-categories' %}
+
+    <div class="breadcrumb-holder">
+      <div class="container">
+        {% partial('components/breadcrumbs')  %}
+      </div>
+    </div>
+  </section>
+
+
+  <section class="section-home-products">
+    <div class="container">
+      <h1 class="mt-4 mb-4">{{ this.page.title}}</h1>
+      {% page %}
+    </div>
+  </section>
+
+
+  {% partial 'layout-components/footer'
+    menu1=footermenu1.menuItems
+    menu2=footermenu2.menuItems
+    menu3=footermenu3.menuItems
+  %}
+
+  {% partial 'layout-components/copyright' %}
+
+</div>
+
+{% partial 'layout-components/scripts' %}
+
+</body>
+</html>

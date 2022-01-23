@@ -1,0 +1,6 @@
+plugin:
+    name: 'lovata.wishlistshopaholic::lang.plugin.name'
+    description: 'lovata.wishlistshopaholic::lang.plugin.description'
+    author: Lovata
+    icon: oc-icon-heart
+    homepage: ''

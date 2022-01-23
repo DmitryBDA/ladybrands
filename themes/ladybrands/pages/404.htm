@@ -1,0 +1,25 @@
+url = "/404"
+layout = "static"
+title = "Страница 404"
+is_hidden = 0
+==
+<?php
+function onInit(){
+  $this->page->title = 'Ошибка 404 - Lady & Brands';
+  $this->page->canonical = request()->getSchemeAndHttpHost() . '/404';
+}
+
+function onStart() {
+  //$this->addCss(['~/modules/system/assets/css/framework.extras.css', 'assets/css/styles.min.css']);
+  //$this->addJs(['assets/javascript/jquery-3.6.0.min.js', '~/modules/system/assets/js/framework.js', '~/modules/system/assets/js/framework.extras.js', 'assets/javascript/default.js']);
+}
+?>
+==
+<main>
+  <section class="section-staticPage-header">
+    <div class="container">
+      <h1 class="section-staticPage-header__title">Похоже такой страницы не существует.</h1>
+      <p><b>Проверьте правильность введенного вами адреса.</b></p>
+    </div>
+  </section>
+</main>

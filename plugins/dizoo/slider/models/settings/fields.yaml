@@ -1,0 +1,17 @@
+fields:
+  top:
+    label: 'dizoo.slider::lang.strings.top'
+    span: full
+    type: textarea
+    size: large
+  slide:
+    label: 'dizoo.slider::lang.strings.slide'
+    span: full
+    type: textarea
+    size: giant
+    comment: '{{ image }} {{ align }} {{ first_line }} {{ first_line_color }} {{ second_line }} {{ second_line_color }} {{ third_line }} {{ third_line_color }} {% button %} {{ button_url }} {{ button_text }} {{ button_color }} {% endbutton %} {% button2 %} {{ button2_url }} {{ button2_text }} {% endbutton2 %}'
+  bottom:
+    label: 'dizoo.slider::lang.strings.bottom'
+    span: full
+    type: textarea
+    size: large

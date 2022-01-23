@@ -1,0 +1,10 @@
+plugin:
+    name: 'lovata.discountsshopaholic::lang.plugin.name'
+    description: 'lovata.discountsshopaholic::lang.plugin.description'
+    author: Lovata
+    icon: oc-percent
+    homepage: ''
+permissions:
+    shopaholic-menu-promo-discount:
+        tab: 'lovata.shopaholic::lang.tab.permissions'
+        label: 'lovata.discountsshopaholic::lang.permission.promo'

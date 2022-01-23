@@ -1,0 +1,52 @@
+fields:
+    active:
+        label: 'lovata.toolbox::lang.field.active'
+        span: left
+        default: 1
+        type: switch
+    name:
+        label: 'lovata.toolbox::lang.field.name'
+        span: left
+        required: 1
+        type: text
+    slug:
+        label: 'lovata.toolbox::lang.field.slug'
+        span: right
+        required: 1
+        preset:
+            field: name
+            type: slug
+        type: text
+tabs:
+    fields:
+        code:
+            label: 'lovata.toolbox::lang.field.code'
+            span: left
+            type: text
+            tab: 'lovata.toolbox::lang.tab.settings'
+        external_id:
+            label: 'lovata.toolbox::lang.field.external_id'
+            span: left
+            type: text
+            tab: 'lovata.toolbox::lang.tab.settings'
+        description:
+            label: 'lovata.toolbox::lang.field.description'
+            size: giant
+            span: full
+            type: richeditor
+            tab: 'lovata.toolbox::lang.tab.description'
+        image:
+            label: 'lovata.toolbox::lang.field.image'
+            mode: image
+            useCaption: true
+            thumbOptions:
+                mode: crop
+                extension: auto
+            span: left
+            type: fileupload
+            tab: 'lovata.toolbox::lang.tab.images'
+        product:
+            tab: 'lovata.shopaholic::lang.menu.product'
+            span: full
+            type: partial
+            path: ~/plugins/lovata/labelsshopaholic/controllers/labels/_product.htm

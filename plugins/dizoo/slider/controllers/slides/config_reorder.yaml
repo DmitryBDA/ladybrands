@@ -1,0 +1,5 @@
+title: Slides
+modelClass: Dizoo\Slider\Models\Slides
+nameFrom: title
+toolbar:
+    buttons: reorder_toolbar

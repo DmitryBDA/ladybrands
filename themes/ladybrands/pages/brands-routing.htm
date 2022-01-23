@@ -1,0 +1,97 @@
+title = "Товары бренда"
+url = "/brands/:slug"
+layout = "default"
+meta_title = ""
+meta_description = "Бренды - описание"
+is_hidden = 0
+
+[BrandPage]
+slug = "{{ :slug }}"
+slug_required = 1
+smart_url_check = 1
+skip_error = 0
+
+[ProductList]
+sorting = "name|asc"
+
+[Pagination]
+count_per_page = 12
+pagination_limit = 3
+active_class = "active"
+button_list = "prev,first,prev-more,main,last-more,last,next"
+first_button_name = "First"
+first_button_limit = 2
+first_button_number = 1
+first-more_button_name = "..."
+first-more_button_limit = 3
+prev_button_name = "<"
+prev_button_limit = 1
+prev-more_button_name = "..."
+prev-more_button_limit = 3
+next-more_button_name = "..."
+next-more_button_limit = 1
+next_button_name = ">"
+next_button_limit = 1
+last-more_button_name = "..."
+last-more_button_limit = 3
+last_button_name = "Последняя"
+last_button_limit = 2
+last_button_number = 1
+==
+<?php
+function onInit() {
+
+  require_once('phpcode/brands.php');
+
+   $this['arProductList'] = $arProductList;
+   $this['obBrand'] = $obBrand;
+   $this['arPaginationList'] = $arPaginationList;
+   $this['arBreadcrumbs'] = $arBreadcrumbs;
+   $this['countPerPage'] = $countPerPage;
+   $this['isLoadMore'] = $isLoadMore;
+   $this['iPage'] = $iPage;
+
+   $this['obOfferMaxPrice'] = $obOfferMaxPrice;
+   $this['obOfferMinPrice'] = $obOfferMinPrice;
+   $this['fPriceTo'] = $fPriceTo;
+   $this['fPriceFrom'] = $fPriceFrom;
+
+   $this['obOfferMaxPriceTotal'] = $obOfferMaxPriceTotal;
+   $this['obOfferMinPriceTotal'] = $obOfferMinPriceTotal;
+
+
+
+}
+
+function onStart() {
+
+
+}
+?>
+==
+{% put breadcrumbs %}
+  <div class="breadcrumb-holder">
+    <div class="container">
+      <div class="d-flex justify-content-between">
+        {% partial('components/breadcrumbs')  %}
+
+        <div class="grid-list-buttons">
+          <ul class="nav">
+            <li class="active"><a data-toggle="tab" href="#grid-view"><i class="fa fa-th-large"></i> Плитка</a></li>
+            <li ><a data-toggle="tab" href="#list-view"><i class="fa fa-list"></i> Список</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endput %}
+
+<section class="section-two-columns">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-12">
+        {% partial('components/catalog/products') title = obBrand.name obProductList=obProductList countPerPage=countPerPage isLoadMore=isLoadMore %}
+      </div>
+    </div>
+  </div>
+</section>

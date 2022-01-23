@@ -1,0 +1,10 @@
+plugin:
+    name: 'lovata.couponsshopaholic::lang.plugin.name'
+    description: 'lovata.couponsshopaholic::lang.plugin.description'
+    author: Lovata
+    icon: oc-icon-ticket
+    homepage: ''
+permissions:
+    shopaholic-menu-promo-coupon:
+        tab: 'lovata.shopaholic::lang.tab.permissions'
+        label: 'lovata.couponsshopaholic::lang.permission.coupon'

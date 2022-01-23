@@ -1,0 +1,68 @@
+
+
+<div class="d-md-flex justify-content-between">
+
+  <div class="dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">Сортировка</a>
+
+    <div class="dropdown-menu _shopaholic-sorting" aria-labelledby="dropdownMenuButton">
+      <a class="dropdown-item _shopaholic-sorting" data-sort="price|desc" href="#">По цене (убывание)</a>
+      <a class="dropdown-item _shopaholic-sorting" data-sort="price|asc" href="#">По цене (возрастание)</a>
+      <a class="dropdown-item _shopaholic-sorting" data-sort="name|desc" href="#">По алфавиту (А-Я)</a>
+      <a class="dropdown-item _shopaholic-sorting" data-sort="name|asc" href="#">По алфавиту (Я-А)</a>
+
+    </div>
+  </div>
+{{arProductList.count}}
+  <div>
+    <ul class="nav justify-content-end">
+      <li class="nav-item nav-link">Показать по:</li>
+      <li class="nav-item"><a class="nav-link" href="?limit=12{% if isSearch %}&q={{ q }}{% endif %}">12</a></li>
+      <li class="nav-item"><a class="nav-link" href="?limit=24{% if isSearch %}&q={{ q }}{% endif %}">24</a></li>
+      <li class="nav-item"><a class="nav-link" href="?limit=48{% if isSearch %}&q={{ q }}{% endif %}">48</a></li>
+    </ul></div>
+
+
+</div>
+
+
+
+
+
+<div id="list-view" class="products-list products-holder  tab-pane">
+
+  <div class="_list_view_wrapper">
+    {% partial('components/catalog/productsViewList') arProductList=arProductList %}
+  </div>
+
+  <div class="_load_more-holder">
+    {% partial('components/catalog/btnLoadMore') isLoadMore=isLoadMore %}
+  </div>
+
+  {% if arPaginationList is not empty %}
+  <div class="_pagination_wrapper">
+    {% partial('components/pagination') arPaginationList=arPaginationList iPage=iPage %}
+  </div>
+  {% endif %}
+</div>
+
+<div id="grid-view" class="products-grid products-holder active tab-pane">
+
+  <div class="_grid_view_wrapper">
+    {% partial('components/catalog/productsViewGrid') arProductList=arProductList %}
+  </div>
+
+  <div class="_load_more-holder">
+    {% partial('components/catalog/btnLoadMore') isLoadMore=isLoadMore %}
+  </div>
+
+
+  {% if arPaginationList is not empty %}
+  <div class="_pagination_wrapper">
+    {% partial('components/pagination') arPaginationList=arPaginationList iPage=iPage %}
+  </div>
+  {% endif %}
+
+</div>
+
+

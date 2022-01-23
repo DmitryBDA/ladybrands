@@ -1,0 +1,63 @@
+{% set obCartPositionList = Cart.get() %}
+
+<section class="section-home-products">
+  <div class="container">
+    <div class="controls-holder nav-tabs">
+      <ul class="nav justify-content-center">
+        {% for item in obProductListWithLabels %}
+          <li>
+            <a data-toggle="tab" {% if loop.index == 1 %}class='active'{% endif %} href="#{{ item['label'].code }}">{{ item['label'].name }}</a>
+          </li>
+        {% endfor %}
+        {% if imagesInsta is not empty %}
+          <li><a data-toggle="tab" href="#best-sellers">Инстаграм</a></li>
+        {% endif %}
+      </ul>
+    </div>
+    <div class="tab-content">
+
+      {% for item in obProductListWithLabels %}
+        <div id="{{ item['label'].code }}"
+             class="products-holder {% if loop.index == 1 %}active{% endif %} tab-pane _label_product_list_{{ item['label'].code }}">
+
+          {% partial('index-page/productListLabel') label=item['label'].code arProductList=item['arProductList'] isLoadMore=item['isLoadMore'] iPage=item['iPage'] %}
+
+        </div>
+      {% endfor %}
+
+    </div>
+
+    {% if imagesInsta is not empty %}
+      <div id="best-sellers" class="products-holder  tab-pane ">
+        {% set idx = 1 %}
+        {% for item in imagesInsta %}
+          {% if idx == 1 %}
+            <div class="row">
+          {% endif %}
+
+          <div class="col-6 col-sm-3">
+            <div class="mb-3">
+              <a href="{{ item.link }}">
+                <picture>
+                  <source type="image/webp"
+                          srcset="{{ item.icon|media | resize(200, 200, { 'mode': 'auto', 'quality': '85', 'extension': 'webp' }) }}">
+                  <img loading="lazy" src="{{ item.icon|media | resize(200, 200, { mode: 'auto'}) }}"
+                       alt="{{ item.name }}" class="section-advantages__image">
+                </picture>
+              </a>
+            </div>
+          </div>
+          {% if idx == 4 %}
+            </div>
+            {% set idx = 0 %}
+          {% endif %}
+
+          {% set idx = idx + 1 %}
+        {% endfor %}
+
+      </div>
+    {% endif %}
+
+
+  </div>
+</section>

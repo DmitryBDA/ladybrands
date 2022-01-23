@@ -1,0 +1,38 @@
+columns:
+    name:
+        label: 'lovata.toolbox::lang.field.name'
+        type: text
+        searchable: true
+        sortable: true
+    code:
+        label: 'lovata.toolbox::lang.field.code'
+        type: text
+        searchable: true
+        sortable: true
+    description:
+        label: 'lovata.toolbox::lang.field.description'
+        type: text
+        searchable: true
+        sortable: false
+    id:
+        label: 'lovata.toolbox::lang.field.id'
+        type: number
+        sortable: true
+        searchable: true
+        width: 100px
+    sort_order:
+        label: 'lovata.toolbox::lang.field.sort_order'
+        type: number
+        searchable: false
+        sortable: true
+        width: 150px
+    created_at:
+        label: 'lovata.toolbox::lang.field.created_at'
+        type: timetense
+        invisible: true
+        sortable: true
+    updated_at:
+        label: 'lovata.toolbox::lang.field.updated_at'
+        type: timetense
+        invisible: true
+        sortable: true

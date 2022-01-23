@@ -1,0 +1,75 @@
+{
+    "name": "octobercms",
+    "description": "October CMS is a self-hosted CMS platform based on the Laravel PHP Framework.",
+    "directories": {
+        "test": "tests/js/cases",
+        "helpers": "tests/js/helpers"
+    },
+    "scripts": {
+        "compile-less": "php artisan october:util compile less",
+        "compile-js": "php artisan october:util compile js",
+        "watch-less": "onchange -v \"modules/**/*.less\" \"plugins/**/*.less\" -- php artisan october:util compile less",
+        "watch-js": "onchange -v \"modules/**/*.js\" \"plugins/**/*.js\" --exclude \"**/*-min.js\" -- php artisan october:util compile js",
+        "test": "mocha --require @babel/register tests/js/cases/**/*.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/octobercms/october.git"
+    },
+    "contributors": [
+        {
+            "name": "Alexey Bobkov",
+            "email": "aleksey.bobkov@gmail.com"
+        },
+        {
+            "name": "Samuel Georges",
+            "email": "daftspunky@gmail.com"
+        }
+    ],
+    "bugs": {
+        "url": "https://github.com/octobercms/october/issues"
+    },
+    "homepage": "https://octobercms.com/",
+    "devDependencies": {
+        "@babel/cli": "^7.5.5",
+        "@babel/core": "^7.5.5",
+        "@babel/node": "^7.5.5",
+        "@babel/preset-env": "^7.5.5",
+        "@babel/register": "^7.5.5",
+        "babel-plugin-module-resolver": "^3.2.0",
+        "autoprefixer": "^9.8.6",
+        "babel-loader": "^8.2.2",
+        "chai": "^4.2.0",
+        "cssnano": "^5.0.6",
+        "cssnext": "^1.8.4",
+        "del": "^6.0.0",
+        "gulp": "^4.0.2",
+        "gulp-babel": "^8.0.0",
+        "gulp-bundle-assets": "^2.29.0",
+        "gulp-cssimport": "^7.0.0",
+        "gulp-cssmin": "^0.2.0",
+        "gulp-file-include": "^2.3.0",
+        "gulp-if": "^3.0.0",
+        "gulp-less": "^4.0.1",
+        "gulp-plumber": "^1.2.1",
+        "gulp-postcss": "^9.0.0",
+        "gulp-rename": "^2.0.0",
+        "gulp-svgstore": "^7.0.1",
+        "gulp-webp": "^4.0.1",
+        "jquery": "^3.4.1",
+        "jsdom": "^15.1.1",
+        "mocha": "^6.2.0",
+        "onchange": "^6.1.0",
+        "parallax-js": "^3.1.0",
+        "path": "^0.12.7",
+        "sinon": "^7.4.1",
+        "webpack": "^5.46.0",
+        "webpack-stream": "^6.1.2"
+    },
+    "dependencies": {
+        "@fancyapps/ui": "github:fancyapps/ui",
+        "@lovata/shopaholic-cart": "^1.1.1",
+        "@lovata/shopaholic-filter-panel": "^1.1.1",
+        "@lovata/shopaholic-product-list": "^1.0.1"
+    }
+}

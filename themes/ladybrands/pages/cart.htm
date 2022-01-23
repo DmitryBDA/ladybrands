@@ -1,0 +1,58 @@
+url = "/cart"
+layout = "default"
+title = "Корзина"
+is_hidden = 0
+
+[ShippingTypeList]
+
+[PaymentMethodList]
+
+[MakeOrder]
+redirect_on = 1
+redirect_page = "zakaz-uspeshno-oformlen"
+==
+<?php
+function onInit() {
+   require_once('phpcode/cart.php');
+
+   $this['arBreadcrumbs'] = $arBreadcrumbs;
+   $this['obShippingTypeList'] = $obShippingTypeList;
+   $this['obPaymentMethodList'] = $obPaymentMethodList;
+}
+
+function onStart() {
+  $this->addJs([
+'assets/javascript/cartPage.js',
+]);
+
+}
+?>
+==
+{% put breadcrumbs %}
+  <div class="breadcrumb-holder">
+    <div class="container">
+      {% partial('components/breadcrumbs') %}
+    </div>
+  </div>
+{% endput %}
+
+<section class="section-shopping-cart">
+  <div class="container">
+    <div class="row-fluid">
+      <div class="span12">
+        <div class="page-content shopping-cart-page _cart_list_wrapper">
+
+          {% partial 'cart-page/cart-position' %}
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-checkout shipping-form _create_order_wrapper">
+  {% partial('cart-page/create-order') %}
+</section>
+
+
+</section>

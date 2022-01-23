@@ -1,0 +1,21 @@
+discount:
+    label: 'lovata.discountsshopaholic::lang.discount.name'
+    manage:
+        list: $/lovata/discountsshopaholic/models/discount/columns.yaml
+        showSearch: true
+        showSorting: true
+        showCheckboxes: true
+        recordsPerPage: 20
+        defaultSort:
+            column: id
+            direction: desc
+    view:
+        list: $/lovata/discountsshopaholic/models/discount/columns.yaml
+        recordUrl: lovata/discountsshopaholic/discounts/update/:id
+        toolbarButtons: add|remove
+        showSearch: true
+        showSorting: true
+        recordsPerPage: 10
+        defaultSort:
+            column: id
+            direction: desc

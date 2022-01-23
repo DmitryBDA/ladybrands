@@ -1,0 +1,17 @@
+plugin:
+    name: 'dizoo.slider::lang.plugin.name'
+    description: 'dizoo.slider::lang.plugin.description'
+    author: Dizoo
+    icon: oc-icon-image
+    homepage: ''
+permissions:
+    manage-slider:
+        tab: 'dizoo.slider::lang.strings.manage_slider'
+        label: 'dizoo.slider::lang.strings.manage_slides'
+navigation:
+    main-menu-item:
+        label: 'dizoo.slider::lang.plugin.name'
+        url: dizoo/slider/slides
+        icon: icon-image
+        permissions:
+            - manage-slider

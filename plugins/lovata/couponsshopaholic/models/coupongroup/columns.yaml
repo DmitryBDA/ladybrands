@@ -1,0 +1,48 @@
+columns:
+    active:
+        label: 'lovata.toolbox::lang.field.active'
+        type: switch
+        sortable: true
+        searchable: false
+    name:
+        label: 'lovata.toolbox::lang.field.name'
+        type: text
+        sortable: true
+        searchable: true
+    date_begin:
+        label: 'lovata.toolbox::lang.field.date_begin'
+        type: datetime
+        sortable: true
+        searchable: false
+    date_end:
+        label: 'lovata.toolbox::lang.field.date_end'
+        type: datetime
+        sortable: true
+        searchable: false
+    promo_mechanism_name:
+        label: 'lovata.ordersshopaholic::lang.field.promo_mechanism'
+        relation: mechanism
+        sortable: false
+        searchable: false
+        select: name
+    coupon_count:
+        label: 'lovata.couponsshopaholic::lang.field.coupon_count'
+        type: text
+        sortable: false
+        searchable: false
+    id:
+        label: 'lovata.toolbox::lang.field.id'
+        type: text
+        searchable: true
+        sortable: true
+        width: 100px
+    created_at:
+        label: 'lovata.toolbox::lang.field.created_at'
+        type: timetense
+        sortable: true
+        invisible: true
+    updated_at:
+        label: 'lovata.toolbox::lang.field.updated_at'
+        type: timetense
+        sortable: true
+        invisible: true

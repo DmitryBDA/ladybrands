@@ -1,0 +1,16 @@
+label:
+    label: 'lovata.labelsshopaholic::lang.label.name'
+    manage:
+        list: $/lovata/labelsshopaholic/models/label/columns.yaml
+        showSearch: true
+        showSorting: true
+        recordsPerPage: 10
+        filter: $/lovata/labelsshopaholic/controllers/labels/_config_filter.yaml
+    view:
+        list: $/lovata/labelsshopaholic/models/label/columns.yaml
+        recordUrl: lovata/labelsshopaholic/labels/update/:id
+        toolbarButtons: add|remove
+        showSearch: true
+        showSorting: true
+        recordsPerPage: 10
+        filter: $/lovata/labelsshopaholic/controllers/labels/_config_filter.yaml

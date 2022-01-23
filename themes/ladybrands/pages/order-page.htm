@@ -1,0 +1,138 @@
+title = "Заказ детально"
+url = "/account/order/:slug"
+layout = "default"
+meta_title = "Заказ детально"
+is_hidden = 0
+child_of = "mey_no_parent"
+hide_crumb = 0
+remove_crumb_trail = 0
+crumb_disabled = 0
+
+[session]
+security = "user"
+redirect = "index"
+
+[OrderPage]
+slug = "{{ :slug }}"
+slug_required = 1
+==
+<?php
+function onInit() {
+
+   $arBreadcrumbs[] = [
+    'name' => 'Заказ',
+    'url' => '',
+    'active' => true,
+  ];
+
+  $arBreadcrumbs[] = [
+    'name' => 'Главная',
+    'url' => \Cms\Classes\Page::url('index'),
+    'active' => false,
+  ];
+
+  $arBreadcrumbs = array_reverse($arBreadcrumbs);
+  $this['arBreadcrumbs'] = $arBreadcrumbs;
+
+}
+function onStart() {
+
+  $user = $this->account->user();
+
+  if(!$user){
+    return Redirect::to('/login');
+  }
+}
+
+?>
+==
+
+
+{% set obOrder = OrderPage.get() %}
+{% set obOrderPositionList = obOrder.order_position %}
+
+{% put breadcrumbs %}
+  <div class="breadcrumb-holder">
+    <div class="container">
+      {% partial('components/breadcrumbs') arBreadcrumbs=arBreadcrumbs %}
+    </div>
+  </div>
+{% endput %}
+
+<section class="section-checkout shipping-form">
+  <div class="container">
+
+
+    <div class="phase-title current">
+      <h2>Детали заказа</h2>
+    </div>
+    <div class="row-fluid _row_fluid">
+      <div class="span12">
+
+        <div class="page-content shopping-cart-page ">
+
+          <table class="table ">
+            <thead>
+            <tr>
+              <th class="span2">Фото</th>
+              <th class="span5">Название</th>
+              <th class="span2 price-column">Цена</th>
+              <th class="span2">Количество</th>
+              <th class="span2 price-column">Сумма</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {% if obOrderPositionList.isNotEmpty() %}
+
+              {% for obOrderPosition in obOrderPositionList %}
+
+                {% partial 'order-page/order-position' obOrderPosition=obOrderPosition %}
+
+              {% endfor %}
+
+              {% if obOrder.shipping_type.isNotEmpty() %}
+                <tr>
+                  <td colspan="2">
+                    <div style="text-align: left" class="total-text">
+                      Способ оплаты
+                    </div>
+                  </td>
+                  <td colspan="2">
+                    <div class=" ">
+                      {{ obOrder.shipping_type.name }}
+                    </div>
+                  </td>
+                  <td></td>
+                </tr>
+              {% endif %}
+
+              {% if obOrder.property.shipping_address1 %}
+                <tr>
+                  <td colspan="2">
+                    <div style="text-align: left" class="total-text">
+                      Адрес доставки
+                    </div>
+                  </td>
+                  <td colspan="2">
+                    <div class=" ">
+                      {{ obOrder.property.shipping_address1 }}
+                    </div>
+                  </td>
+                  <td></td>
+                </tr>
+              {% endif %}
+
+            {% endif %}
+
+            </tbody>
+          </table>
+          <div class="buttons-holder">
+            <a class="cusmo-btn gray narrow" onclick="history.back();" href="#">назад</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+

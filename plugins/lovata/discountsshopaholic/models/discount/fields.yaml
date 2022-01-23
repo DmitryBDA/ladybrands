@@ -1,0 +1,101 @@
+fields:
+    active:
+        label: 'lovata.toolbox::lang.field.active'
+        span: left
+        default: 0
+        type: switch
+    name:
+        label: 'lovata.toolbox::lang.field.name'
+        span: left
+        required: 1
+        type: text
+tabs:
+    fields:
+        date_begin:
+            label: 'lovata.discountsshopaholic::lang.field.date_begin'
+            span: left
+            type: datepicker
+            tab: 'lovata.toolbox::lang.tab.settings'
+        date_end:
+            label: 'lovata.discountsshopaholic::lang.field.date_end'
+            span: right
+            type: datepicker
+            tab: 'lovata.toolbox::lang.tab.settings'
+        discount_value:
+            label: 'lovata.discountsshopaholic::lang.field.discount_value'
+            span: left
+            type: text
+            tab: 'lovata.toolbox::lang.tab.settings'
+        discount_type:
+            label: 'lovata.discountsshopaholic::lang.field.discount_type'
+            span: right
+            type: dropdown
+            tab: 'lovata.toolbox::lang.tab.settings'
+        code:
+            label: 'lovata.toolbox::lang.field.code'
+            span: left
+            type: text
+            tab: 'lovata.toolbox::lang.tab.settings'
+        external_id:
+            label: 'lovata.toolbox::lang.field.external_id'
+            span: right
+            type: text
+            tab: 'lovata.toolbox::lang.tab.settings'
+        promo_block:
+            label: 'lovata.shopaholic::lang.field.promo_block'
+            emptyOption: 'lovata.toolbox::lang.field.empty'
+            span: left
+            type: relation
+            tab: 'lovata.toolbox::lang.tab.settings'
+        preview_text:
+            label: 'lovata.toolbox::lang.field.preview_text'
+            size: large
+            span: full
+            type: textarea
+            tab: 'lovata.toolbox::lang.tab.description'
+        description:
+            label: 'lovata.toolbox::lang.field.description'
+            size: giant
+            span: full
+            type: richeditor
+            tab: 'lovata.toolbox::lang.tab.description'
+        product:
+            span: full
+            context:
+                - update
+                - preview
+            type: partial
+            path: ~/plugins/lovata/discountsshopaholic/controllers/discounts/_product.htm
+            tab: 'lovata.shopaholic::lang.menu.product'
+        offer:
+            span: full
+            context:
+                - update
+                - preview
+            type: partial
+            path: ~/plugins/lovata/discountsshopaholic/controllers/discounts/_offer.htm
+            tab: 'lovata.shopaholic::lang.tab.offer'
+        brand:
+            span: full
+            context:
+                - update
+                - preview
+            type: partial
+            path: ~/plugins/lovata/discountsshopaholic/controllers/discounts/_brand.htm
+            tab: 'lovata.shopaholic::lang.menu.brands'
+        category:
+            span: full
+            context:
+                - update
+                - preview
+            type: partial
+            path: ~/plugins/lovata/discountsshopaholic/controllers/discounts/_category.htm
+            tab: 'lovata.shopaholic::lang.menu.categories'
+        tag:
+            span: full
+            context:
+                - update
+                - preview
+            type: partial
+            path: ~/plugins/lovata/discountsshopaholic/controllers/discounts/_tag.htm
+            tab: 'lovata.tagsshopaholic::lang.menu.tags'

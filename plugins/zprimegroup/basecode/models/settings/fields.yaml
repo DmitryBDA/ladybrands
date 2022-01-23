@@ -1,0 +1,90 @@
+tabs:
+  fields:
+    image_instagram:
+      tab: Главная страница
+      label: 'Изображения инстаграмм'
+      type: repeater
+      form:
+        fields:
+          icon:
+            label: 'Изображение'
+            mode: image
+            fileTypes: jpg,jpeg,bmp,png,webp,gif,svg
+            useCaption: true
+            thumbOptions:
+              mode: crop
+              extension: auto
+            span: storm
+            cssClass: col-sm-4
+            type: mediafinder
+          link:
+            label: Ссылка
+            span: left
+            type: text
+
+    address:
+      tab: Настройки
+      label: Адрес
+    phone_1:
+      tab: Настройки
+      label: Телефон 1
+    phone_2:
+      tab: Настройки
+      label: Телефон 2
+    instagram:
+      tab: Настройки
+      label: Instagram
+    email:
+      tab: Настройки
+      label: email
+    viber:
+      tab: Настройки
+      label: Viber
+      span: left
+      type: text
+    whatsApp:
+      tab: Настройки
+      label: WhatsApp
+      span: left
+      type: text
+    telegram:
+      tab: Настройки
+      label: Telegram
+      span: left
+      type: text
+    admin:
+      tab: Настройки
+      label: Email адрес администратора
+      comment: Email адреса отделяйте запятой ,
+      span: left
+      type: text
+    seo_title:
+      tab: SEO
+      label: SEO Title
+      span: left
+      type: text
+    seo_description:
+      tab: SEO
+      label: SEO Description
+      span: left
+      type: text
+    seo_keywords:
+      tab: SEO
+      label: SEO Keywords
+      span: left
+      type: text
+    callback_description:
+      tab: Обратный звонок
+      label: Текст в форме
+      span: left
+      type: text
+    callback_text_link:
+      tab: Обратный звонок
+      label: Текст ссылки
+      span: left
+      type: text
+    callback_link:
+      tab: Обратный звонок
+      label: Адрес ссылки
+      span: left
+      type: text

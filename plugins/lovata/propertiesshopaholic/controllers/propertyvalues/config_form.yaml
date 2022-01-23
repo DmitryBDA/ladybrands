@@ -1,0 +1,11 @@
+name: 'lovata.propertiesshopaholic::lang.property_value.name'
+modelClass: Lovata\PropertiesShopaholic\Models\PropertyValue
+form: $/lovata/propertiesshopaholic/models/propertyvalue/fields.yaml
+defaultRedirect: lovata/propertiesshopaholic/properties
+update:
+    title: 'backend::lang.form.update_title'
+    redirect: lovata/propertiesshopaholic/properties
+    redirectClose: lovata/propertiesshopaholic/properties
+    flashSave: 'lovata.toolbox::lang.message.update_success'
+    flashDelete: 'lovata.toolbox::lang.message.delete_success'
+preview: {  }

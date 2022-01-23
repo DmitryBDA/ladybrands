@@ -1,0 +1,95 @@
+title = "Регистрация"
+url = "/registration"
+layout = "default"
+is_hidden = 0
+
+
+==
+<?php
+  function onInit() {
+  $arBreadcrumbs[] = [
+    'name' => 'Регистрация',
+    'url' => \Cms\Classes\Page::url('registration'),
+    'active' => false,
+  ];
+
+  $arBreadcrumbs[] = [
+    'name' => 'Главная',
+    'url' => \Cms\Classes\Page::url('index'),
+    'active' => false,
+  ];
+
+  $arBreadcrumbs = array_reverse($arBreadcrumbs);
+
+  $this['arBreadcrumbs'] = $arBreadcrumbs;
+
+  }
+
+  function onStart() {
+
+  }
+?>
+==
+{% put breadcrumbs %}
+  <div class="breadcrumb-holder">
+    <div class="container">
+      {% partial('components/breadcrumbs') arBreadcrumbs=arBreadcrumbs %}
+    </div>
+  </div>
+{% endput %}
+
+<section class="section-checkout">
+  <div class="container">
+    <div class="phase-title current">
+      <h1>Регистрация</h1>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="form-holder">
+          <form data-request="{{account}}::onRegister" data-request-redirect="/account">
+
+            <div class="control-group mb-2">
+              <div class="controls">
+                <div class="form-label ">ФИО</div>
+                <input type="text"  name="name"  class="required span12 cusmo-input"  />
+              </div>
+            </div>
+
+            <div class="control-group mb-2">
+              <div class="controls">
+                <div class="form-label ">Email</div>
+                <input type="text"  name="email"  class="required span12 cusmo-input" required />
+              </div>
+            </div>
+
+            <div class="control-group mb-2">
+              <div class="controls">
+                <div class="form-label ">Мобильный телефон</div>
+                <input type="text"  name="phone"  class="required span12 cusmo-input _input_phone" required />
+              </div>
+            </div>
+
+            <div class="control-group mb-2">
+              <div class="controls">
+                <div class="form-label ">Пароль</div>
+                <input type="password"  name="password" class="required span12 cusmo-input"  />
+              </div>
+            </div>
+
+            <div class="control-group mb-2">
+              <div class="controls">
+                <div class="form-label ">Подтверждение пароля</div>
+                <input type="password"  name="password_confirmation" class="required span12 cusmo-input"  />
+              </div>
+            </div>
+            <div class="rememberme">
+              <input type="checkbox" class="iCheck" name="agree_rules" required > Согласен с политикой конфиденциальности сайта
+            </div>
+            <button class="cusmo-btn narrow " type="submit" >Регистрация</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+

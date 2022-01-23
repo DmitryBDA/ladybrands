@@ -1,0 +1,82 @@
+url = "/"
+layout = "default"
+title = "Главная страница"
+is_hidden = 0
+
+[slider]
+autoplay = 1
+loop = 1
+bootstrap = 0
+scripting = 0
+css = 0
+
+[LabelList]
+
+[ProductList]
+sorting = "no"
+
+[SiteSettings]
+
+[BrandList]
+
+[Pagination]
+count_per_page = 8
+pagination_limit = 3
+active_class = "active"
+button_list = "prev,first,prev-more,main,last-more,last,next"
+first_button_name = "First"
+first_button_limit = 2
+first_button_number = 1
+first-more_button_name = "..."
+first-more_button_limit = 3
+prev_button_name = "<"
+prev_button_limit = 1
+prev-more_button_name = "..."
+prev-more_button_limit = 3
+next-more_button_name = "..."
+next-more_button_limit = 1
+next_button_name = ">"
+next_button_limit = 1
+last-more_button_name = "..."
+last-more_button_limit = 3
+last_button_name = "Последняя"
+last_button_limit = 2
+last_button_number = 1
+==
+<?php
+function onInit() {
+
+  require_once('phpcode/index.php');
+
+  $this['obSlideList'] = $obSlideList;
+  $this['obProductListWithLabels'] = $obProductListWithLabels;
+  $this['imagesInsta'] = $imagesInsta;
+}
+
+function onStart()
+{
+  //$this->addCss(['assets/css/indexPage.min.css']);
+  $this->addJs(['assets/javascript/index.js']);
+}
+
+function onLoadMoreLabel(){
+
+  require_once('phpcode/loadmore/index-loadmore.php');
+
+  $this['arProductList'] = $arProductList;
+  $this['isLoadMore'] = $isLoadMore;
+  $this['iPage'] = $numPage;
+  $this['label'] = $typeLabel;
+
+  return [
+    "._label_product_list_$typeLabel" => $this->renderPartial('index-page/productListLabel')
+  ];
+}
+
+?>
+==
+{% partial('index-page/slider') obSlideList=obSlideList %}
+
+{% partial('index-page/home-products') obProductListWithLabels=obProductListWithLabels imagesInsta=imagesInsta arProductList=arProductList %}
+
+{% partial('index-page/homepage-subscribe')%}

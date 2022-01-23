@@ -1,0 +1,103 @@
+offer:
+    label: 'lovata.shopaholic::lang.offer.name'
+    manage:
+        list: $/lovata/shopaholic/models/offer/relation_columns.yaml
+        showSearch: true
+        showSorting: true
+        recordsPerPage: 10
+    view:
+        list: $/lovata/shopaholic/models/offer/relation_columns.yaml
+        recordUrl: lovata/shopaholic/offers/update/:id
+        toolbarButtons: 'add|remove'
+        showSearch: true
+        showSorting: true
+        recordsPerPage: 10
+coupon:
+    label: 'lovata.couponsshopaholic::lang.coupon.name'
+    manage:
+        form: $/lovata/couponsshopaholic/models/coupon/fields.yaml
+        showSearch: true
+        showSorting: true
+        recordsPerPage: 20
+    view:
+        list: $/lovata/couponsshopaholic/models/coupon/columns.yaml
+        toolbarButtons: 'create|delete'
+        showSearch: true
+        showSorting: true
+        recordsPerPage: 20
+        defaultSort:
+            column: id
+            direction: desc
+product:
+    label: 'lovata.shopaholic::lang.product.name'
+    manage:
+        list: $/lovata/shopaholic/models/product/relation_columns.yaml
+        showSearch: true
+        showSorting: true
+        recordsPerPage: 10
+    view:
+        list: $/lovata/shopaholic/models/product/relation_columns.yaml
+        recordUrl: lovata/shopaholic/products/update/:id
+        toolbarButtons: 'add|remove'
+        showSearch: true
+        showSorting: true
+        recordsPerPage: 10
+brand:
+    label: 'lovata.shopaholic::lang.brand.name'
+    manage:
+        list: $/lovata/shopaholic/models/brand/columns.yaml
+        showSearch: true
+        showSorting: true
+        recordsPerPage: 10
+    view:
+        list: $/lovata/shopaholic/models/brand/columns.yaml
+        recordUrl: lovata/shopaholic/brands/update/:id
+        toolbarButtons: 'add|remove'
+        showSearch: true
+        showSorting: true
+        recordsPerPage: 10
+category:
+    label: 'lovata.shopaholic::lang.category.name'
+    manage:
+        list: $/lovata/shopaholic/models/category/columns.yaml
+        showSearch: true
+        showSorting: true
+        recordsPerPage: 10
+    view:
+        list: $/lovata/shopaholic/models/category/columns.yaml
+        recordUrl: lovata/shopaholic/categories/update/:id
+        toolbarButtons: 'add|remove'
+        showSearch: true
+        showSorting: true
+        recordsPerPage: 10
+shipping_type:
+    label: 'lovata.ordersshopaholic::lang.shipping_type.name'
+    manage:
+        form: $/lovata/ordersshopaholic/models/shippingtype/fields.yaml
+        showSearch: true
+        showSorting: true
+        recordsPerPage: 10
+    view:
+        list: $/lovata/ordersshopaholic/models/shippingtype/columns.yaml
+        recordUrl: lovata/ordersshopaholic/shippingtypes/update/:id
+        toolbarButtons: 'add|remove'
+        showSearch: true
+        showSorting: true
+        recordsPerPage: 10
+        defaultSort:
+            column: id
+            direction: desc
+tag:
+    label: 'lovata.tagsshopaholic::lang.tag.name'
+    manage:
+        list: $/lovata/tagsshopaholic/models/tag/columns.yaml
+        showSearch: true
+        showSorting: true
+        recordsPerPage: 10
+    view:
+        list: $/lovata/tagsshopaholic/models/tag/columns.yaml
+        recordUrl: lovata/tagsshopaholic/tags/update/:id
+        toolbarButtons: 'add|remove'
+        showSearch: true
+        showSorting: true
+        recordsPerPage: 10

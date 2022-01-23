@@ -1,0 +1,143 @@
+description = "Шаблон по умолчанию"
+
+[staticMenu headerMenu]
+code = "headerMenu"
+
+[CategoryList]
+
+[Cart]
+
+[account]
+redirect = 0
+paramCode = "code"
+forceSecure = 0
+requirePassword = 0
+
+[session]
+security = "all"
+
+[resetPassword]
+paramCode = "code"
+
+[ProductList]
+sorting = "no"
+
+[staticMenu footermenu1]
+code = "footermenu1"
+
+[staticMenu footermenu2]
+code = "footermenu2"
+
+[staticMenu footermenu3]
+code = "footermenu3"
+
+[SiteSettings]
+
+[staticMenu vojti]
+code = "vojti"
+
+[staticMenu vyjti]
+code = "vyjti"
+==
+<?php
+function onInit()
+{
+  $obCategoryListTop = $this->CategoryList->getCategoriesShowMain();
+  $obList = $this->ProductList->make()->wishList()->active();
+
+  $this['obCategoryListTop'] = $obCategoryListTop;
+  $this['obList'] = $obList;
+
+  $strPhone = $this->SiteSettings->get('phone');
+  $this['phone'] =str_replace([' ', '(', ')', '-'], '', $strPhone);
+
+}
+
+function onStart()
+{
+  $this->addCss([
+    '~/modules/system/assets/css/framework.extras.css',
+    'assets/css/bootstrap.min.css',
+    'assets/css/font-awesome/css/font-awesome.min.css',
+    'assets/css/slick.css',
+    'assets/css/slick-theme.css',
+    'assets/css/dataslider.css',
+    'assets/css/chosen.css',
+    'assets/css/icheck/minimal/yellow.css',
+    'assets/css/style.css',
+    'assets/css/responsive.css',
+  ]);
+
+  $this->addJs([
+    'assets/js/jquery-3.6.min.js',
+    '~/modules/system/assets/js/framework.js',
+    '~/modules/system/assets/js/framework.extras.js',
+    'assets/js/jquery-migrate-1.1.1.min.js',
+	'assets/js/popper.min.js',
+    'assets/js/bootstrap.min.js',    
+    'assets/js/css_browser_selector.js',
+    'assets/js/twitter-bootstrap-hover-dropdown.min.js',
+    'assets/js/jquery.easing-1.3.js',
+    'assets/js/jquery.flexslider-min.js',
+    'assets/js/chosen.jquery.min.js',
+    'assets/js/jquery.raty.min.js',
+    'assets/js/bootstrap-slider.js',
+    'assets/js/slick.min.js',
+    'assets/js/jquery.carouFredSel-6.2.1-packed.js',
+    'assets/js/jquery.icheck.min.js',
+    'assets/js/maskedinput.js',
+    'assets/js/script.js',
+    'assets/javascript/default.js',
+    'assets/javascript/cart.js',
+    'assets/src/js/catalog.js',
+  ]);
+}
+?>
+==
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+
+  {% partial 'layout-components/meta' %}
+
+  {% partial 'layout-components/styles' %}
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css"
+  />
+
+</head>
+<body class="">
+
+  <div class="wrapper">
+    <section class="section-head">
+      {% partial 'layout-components/header'
+        menu=headerMenu.menuItems
+        obList=obList
+        menuLogin = vojti.menuItems
+        menuLogout = vyjti.menuItems
+      %}
+
+      {% partial 'layout-components/top-categories' obCategoryListTop=obCategoryListTop %}
+
+      {% placeholder breadcrumbs %}
+    </section>
+
+    {% page %}
+
+    {% partial ('modal/signin') %}
+
+    {% partial 'layout-components/footer'
+      menu1=footermenu1.menuItems
+      menu2=footermenu2.menuItems
+      menu3=footermenu3.menuItems
+      address=address
+    %}
+
+    {% partial 'layout-components/copyright' %}
+
+  </div>
+
+  {% partial 'layout-components/scripts' %}
+</body>
+</html>

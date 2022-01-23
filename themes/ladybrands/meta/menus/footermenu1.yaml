@@ -1,0 +1,28 @@
+items:
+    -
+        title: Контакты
+        nesting: 0
+        type: static-page
+        url: null
+        code: ''
+        reference: kontakty
+        cmsPage: null
+        replace: 0
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+    -
+        title: 'О нас'
+        nesting: 0
+        type: static-page
+        url: null
+        code: ''
+        reference: o-nas
+        cmsPage: null
+        replace: 0
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+name: 'Нижнее меню 1'

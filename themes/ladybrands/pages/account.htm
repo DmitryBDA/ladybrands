@@ -1,0 +1,218 @@
+url = "/account"
+layout = "default"
+title = "Личный кабинет"
+is_hidden = 0
+meta_title = "Аккаунт"
+child_of = "mey_no_parent"
+hide_crumb = 0
+remove_crumb_trail = 0
+crumb_disabled = 0
+
+[ProductList]
+sorting = "no"
+==
+<?php
+function onInit() {
+  $arBreadcrumbs[] = [
+    'name' => 'Личный кабинет',
+    'url' => \Cms\Classes\Page::url('account'),
+    'active' => true,
+  ];
+
+  $arBreadcrumbs[] = [
+    'name' => 'Главная',
+    'url' => \Cms\Classes\Page::url('index'),
+    'active' => false,
+  ];
+
+  $arBreadcrumbs = array_reverse($arBreadcrumbs);
+
+  $obOrderList = $this->account->user() ? $this->account->user()->order: '';
+
+  $this['arBreadcrumbs'] = $arBreadcrumbs;
+  $this['obOrderList'] = $obOrderList;
+
+}
+
+function onStart() {
+
+  $user = $this->account->user();
+
+  if(!$user)
+  {
+    return Redirect::to('/login');
+  }
+
+  $this->addJs(['assets/javascript/account.js']);
+
+}
+?>
+==
+{% put breadcrumbs %}
+  <div class="breadcrumb-holder">
+    <div class="container">
+      {% partial('components/breadcrumbs') arBreadcrumbs=arBreadcrumbs %}
+    </div>
+  </div>
+{% endput %}
+
+<section class="section-checkout shipping-form">
+  <div class="container">
+
+
+      <div class="row">
+          <div class="col-3">
+              <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                  <a class="lk-links active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Мои заказы</a>
+                  <a class="lk-links" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Избранное</a>
+                  <a class="lk-links" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Редактирование профиля</a>
+                  <a href="#" class="lk-links" data-request="onLogout" data-request-data="redirect: '/login'">Выход</a>
+              </div>
+          </div>
+          <div class="col-9">
+              <div class="tab-content" id="v-pills-tabContent">
+                  <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                      <div class="phase-title passed" data-block="block_two">
+                          <h2>История заказов</h2>
+                      </div>
+
+                      {% if obOrderList.isNotEmpty() %}
+                      <table class="table invoice">
+                          <thead>
+                          <tr>
+
+                              <th class="span1">Дата</th>
+                              <th class="span2">Номер</th>
+                              <th class="span1">Статус</th>
+                              <th class="span3">Способ доставки</th>
+                              <th class="span3">Адрес доставки</th>
+                              <th class="span2">Сумма</th>
+
+                          </tr>
+                          </thead>
+                          <tbody>
+                          {% for obOrder in obOrderList %}
+                          <tr>
+                              <td>
+                                  <div class="desc">
+                                      {{ obOrder.created_at|date('d.m.Y') }}
+                                  </div>
+                              </td>
+                              <td>
+                                  <a href="account/order/{{ obOrder.secret_key }}">
+                                      <div class="desc"> {{ obOrder.order_number }}</div>
+                                  </a>
+                              </td>
+                              <td>
+                                  <div class="desc">
+                                      {{ obOrder.status.name }}
+                                  </div>
+                              </td>
+                              <td>
+                                  <div class="desc">
+                                      {{ obOrder.shipping_type.name }}
+                                  </div>
+                              </td>
+                              <td>
+                                  <div class="desc">
+                                      {{ obOrder.property.shipping_address1 }}
+                                  </div>
+                              </td>
+                              <td>
+                                  <div class="price row-price">
+                                      {{ obOrder.total_price }} {{ obOrder.currency_symbol }}
+                                  </div>
+                              </td>
+                          </tr>
+                          {% endfor %}
+                          </tbody>
+                      </table>
+                      {% else %}
+                      <div>Ваш список заказов пуст</div>
+                      {% endif %}
+                  </div>
+
+
+                  <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+
+                      <div class="phase-title passed" data-block="block_two">
+                          <h2>Избранное</h2>
+                      </div>
+
+                    <div class="row-fluid">
+                      <div class="span12">
+                        <div class="page-content shopping-cart-page _wishlist_list_wrapper">
+
+                          {% partial 'wishlist-page/position' %}
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                      <div class="phase-title passed" data-block="block_two">
+                          <h2>Информация о профиле</h2>
+                      </div>
+
+                      <div id="block_one" class="row-fluid _row_fluid">
+                          <div class="span12">
+                              <div class="form-holder right-border">
+                                  <form data-request="{{ account }}::onUpdate">
+                                      <div class="control-group mb-2">
+                                          <div class="controls">
+                                              <div class="form-label ">ФИО</div>
+                                              <input type="text" name="name" value="{{ user.name }}" class="required span12 cusmo-input"/>
+                                          </div>
+                                      </div>
+
+                                      <div class="control-group mb-2">
+                                          <div class="controls">
+                                              <div class="form-label ">Email</div>
+                                              <input type="text" name="email" value="{{ user.email }}" class="required span12 cusmo-input" required/>
+                                          </div>
+                                      </div>
+
+                                      <div class="control-group mb-2">
+                                          <div class="controls">
+                                              <div class="form-label ">Мобильный телефон</div>
+                                              <input type="text" name="phone" value="{{ user.phone }}"
+                                                     class="required span12 cusmo-input _input_phone" required/>
+                                          </div>
+                                      </div>
+
+                                      <div class="control-group mb-2">
+                                          <div class="controls">
+                                              <div class="form-label ">Пароль</div>
+                                              <input type="password" name="password" class="required span12 cusmo-input"/>
+                                          </div>
+                                      </div>
+
+                                      <div class="control-group mb-2">
+                                          <div class="controls">
+                                              <div class="form-label ">Подтверждение пароля</div>
+                                              <input type="password" name="password_confirmation" class="required span12 cusmo-input"/>
+                                          </div>
+                                      </div>
+                                      <div class="button-holder">
+                                          <button class="cusmo-btn narrow" type="submit">Сохранить</button>
+                                      </div>
+                                  </form>
+                              </div>
+
+                          </div>
+                      </div>
+                  </div>
+
+
+              </div>
+          </div>
+      </div>
+
+
+
+
+  </div>
+</section>
+

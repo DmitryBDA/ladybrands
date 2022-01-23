@@ -1,0 +1,70 @@
+{% set idx = 1 %}
+{% for obProduct in arProductList %}
+  {% if idx == 1 %}
+    <div class="row">
+  {% endif %}
+  <div class="col-6 col-sm-3">
+    <div class="product-item _shopaholic-product-wrapper" data-product-id="{{ obProduct.id }}">
+
+      {% set obLabelList = obProduct.label.active().sort() %}
+
+      {% if obLabelList.isNotEmpty() == true %}
+
+        {% for obLabel in obLabelList %}
+          {% if obLabel.code == 'new' %}
+            <div class="dot-badge ">
+              <img src="{{ 'assets/images/new.png'|theme }}" alt="new" width="40">
+            </div>
+          {% endif %}
+
+          {% if obLabel.code == 'hit' %}
+            <div class="dot-badge">
+              <img src="{{ 'assets/images/hit.png'|theme }}" alt="хит" width="40">
+            </div>
+          {% endif %}
+        {% endfor %}
+
+      {% endif %}
+
+      {% set obOffer = obProduct.offer.first() %}
+
+      {% if obProduct.preview_image.title is not empty %}
+        {% set imageALT = obProduct.preview_image.title %}
+      {% elseif obProduct.preview_image.description is not empty %}
+        {% set imageALT = obProduct.preview_image.description %}
+      {% else %}
+        {% set imageALT = obProduct.preview_image.file_name %}
+      {% endif %}
+
+      <a href="{{ obProduct.getPageUrl('catalog-routing') }}">
+        <picture>
+          <source type="image/webp"
+                  srcset="{{ obProduct.preview_image | resize(200, 200, { 'mode': 'crop', 'quality': '85', 'extension': 'webp' }) }}">
+          <img loading="lazy" src="{{ obProduct.preview_image | resize(200, 200, { 'mode': 'crop'}) }}"
+               alt="{{ imageALT }}" class="img-fluid">
+        </picture>
+        <h2>{{ obProduct.name }}</h2>
+      </a>
+      <div class="tag-line">
+        <span>{{ obProduct.preview_text }}</span>
+      </div>
+      <div class="price">
+        {{ obOffer.price }} {{ obOffer.currency }}
+      </div>
+      <input type="hidden" name="quantity" value="1">
+      <input type="hidden" name="offer_id" value="{{ obOffer.id }}">
+      {% partial('components/btnAddCart') obCartPositionList=obCartPositionList obOffer=obOffer %}
+    </div>
+  </div>
+
+  {% if idx == 4 %}
+    </div>
+    {% set idx = 0 %}
+  {% endif %}
+
+  {% set idx = idx + 1 %}
+{% endfor %}
+
+<div class="">
+  {% partial('index-page/btnLoadMore') label=label isLoadMore=isLoadMore iPage=iPage %}
+</div>

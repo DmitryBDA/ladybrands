@@ -1,0 +1,17 @@
+name: Slides
+modelClass: Dizoo\Slider\Models\Slides
+form: $/dizoo/slider/models/slides/fields.yaml
+defaultRedirect: dizoo/slider/slides
+create:
+    title: 'dizoo.slider::lang.strings.controller_create'
+    redirect: 'dizoo/slider/slides/update/:id'
+    redirectClose: dizoo/slider/slides
+    flashSave: 'dizoo.slider::lang.strings.controller_save'
+update:
+    title: 'dizoo.slider::lang.strings.controller_edit'
+    redirect: dizoo/slider/slides
+    redirectClose: dizoo/slider/slides
+    flashSave: 'dizoo.slider::lang.strings.controller_save'
+    flashDelete: 'dizoo.slider::lang.strings.controller_delete'
+preview:
+    title: 'dizoo.slider::lang.strings.controller_edit'

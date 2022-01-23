@@ -1,0 +1,10 @@
+fields:
+    value:
+        label: 'lovata.toolbox::lang.field.value'
+        span: full
+        required: 1
+        type: text
+    label:
+        label: 'lovata.toolbox::lang.field.label'
+        span: full
+        type: text

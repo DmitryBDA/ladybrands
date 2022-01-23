@@ -1,0 +1,183 @@
+url = "/:category*/:slug?"
+layout = "default"
+title = "Страница категории с товарами"
+is_hidden = 0
+
+[CategoryPage MainCategoryPage]
+slug = "{{ :category }}"
+slug_required = 1
+smart_url_check = 1
+has_wildcard = 1
+skip_error = 0
+
+[CategoryPage]
+slug = "{{ :slug }}"
+slug_required = 0
+smart_url_check = 1
+has_wildcard = 0
+skip_error = 1
+
+[ProductPage]
+slug = "{{ :slug }}"
+slug_required = 0
+smart_url_check = 1
+skip_error = 1
+
+[ProductList]
+sorting = "no"
+
+[CatalogBreadcrumbs]
+
+[CategoryList]
+
+[Pagination]
+available_count_per_page = "12,24,48"
+count_per_page = 12
+pagination_limit = 3
+active_class = "active"
+button_list = "prev,first,prev-more,main,last-more,last,next"
+first_button_name = "First"
+first_button_limit = 2
+first_button_number = 1
+first-more_button_name = "..."
+first-more_button_limit = 3
+prev_button_name = "<"
+prev_button_limit = 1
+prev-more_button_name = "..."
+prev-more_button_limit = 3
+next-more_button_name = "..."
+next-more_button_limit = 1
+next_button_name = ">"
+next_button_limit = 1
+last-more_button_name = "..."
+last-more_button_limit = 3
+last_button_name = "Последняя"
+last_button_limit = 2
+last_button_number = 1
+
+[Cart]
+
+[BrandList]
+
+[reviews]
+categoryFilter = "{{ :category }}"
+==
+<?php
+function onInit()
+{
+    require('phpcode/catalog-routing.php');
+
+    $this['obProduct'] = $obProductItem ?? '';
+    $this['obActiveCategory'] = $obActiveCategoryItem ?? '';
+    $this['parentCategory'] = $parentCategory ?? '';
+    $this['arBreadcrumbs'] = $arBreadcrumbs ?? '';
+    $this['obCategoryList'] = $obCategoryList ?? '';
+    $this['isLoadMore'] = $isLoadMore ?? '';
+    $this['iPage'] = $iPage ?? '';
+
+    $this['arProductList'] = $arProductList ?? '';
+    $this['arPaginationList'] = $arPaginationList ?? '';
+
+   $this['obOfferMaxPrice'] = $obOfferMaxPrice ?? '';
+   $this['obOfferMinPrice'] = $obOfferMinPrice ?? '';
+   $this['fPriceTo'] = $fPriceTo ?? '';
+   $this['fPriceFrom'] = $fPriceFrom ?? '';
+
+   $this['obOfferMaxPriceTotal'] = $obOfferMaxPriceTotal ?? '';
+   $this['obOfferMinPriceTotal'] = $obOfferMinPriceTotal ?? '';
+
+   $this['obBrandList'] = $obBrandList ?? '';
+
+   $this['obProductPropertyList'] = $obProductPropertyList ?? '';
+    $this['reviewsProd'] = $reviewsProd ?? '';
+    $this['countReviews'] = $countReviews ?? 0;
+    $this['rating'] = $rating ?? 0;
+}
+
+function onStart() {
+
+
+}
+?>
+==
+{% put breadcrumbs %}
+  <div class="breadcrumb-holder">
+    <div class="container">
+      <div class="d-flex justify-content-between">
+        {% partial('components/breadcrumbs') arBreadcrumbs=arBreadcrumbs %}
+
+      {% if(obActiveCategory.children.isEmpty() and obProduct == null) %}
+        <div class="grid-list-buttons">
+          <ul class="nav">
+            <li class="active"><a data-toggle="tab" href="#grid-view"><i class="fa fa-th-large"></i> Плитка</a></li>
+            <li ><a data-toggle="tab" href="#list-view"><i class="fa fa-list"></i> Список</a></li>
+          </ul>
+        </div>
+      {% endif %}
+      </div>
+    </div>
+  </div>
+{% endput %}
+
+
+<section class="section-two-columns">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3 col-12">
+        {% partial('components/catalog/sidebar')
+          obCategoryList=obCategoryList
+          obActiveCategory=obActiveCategory
+          obProduct=obProduct
+          obOfferMaxPrice=obOfferMaxPrice
+          obOfferMinPrice=obOfferMinPrice
+          fPriceTo=fPriceTo
+          fPriceFrom=fPriceFrom
+          obBrandList=obBrandList
+          arAppliedBrandList=arAppliedBrandList
+          obProductPropertyList=obProductPropertyList
+          parentCategory=parentCategory %}
+      </div>
+      <div class="col-md-9 col-12">
+
+        {% if obProduct %}
+          {% partial('catalog-routing-page/cardProduct') obProduct=obProduct rating=rating %}
+        {% else %}
+          {% if(obActiveCategory.children.isNotEmpty()) %}
+            {% partial('catalog-routing-page/categoryList') obActiveCategory=obActiveCategory %}
+          {% else %}
+            {% partial('components/catalog/products') title = obActiveCategory.name arProductList=arProductList iPage=iPage %}
+          {% endif %}
+        {% endif %}
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!--<section class="section-homepage-subscribe">
+  <div class="container">
+    <div class="big-circle">
+
+      get the
+      <div class="big"><span>$</span>10</div>
+      cupon
+
+    </div>
+    <div class="offer-text">
+      Sign in for our newsletter and recieve a ten dollars cupon
+    </div>
+    <div class="email-holder">
+
+      <div class="email-field">
+
+        <form>
+          <input class=" required email" name="email" data-placeholder="Enter here your email address..."/>
+          <button class="newsletter-submit-btn" type="submit" value=""><i class="icon-plus"></i></button>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+</section>-->

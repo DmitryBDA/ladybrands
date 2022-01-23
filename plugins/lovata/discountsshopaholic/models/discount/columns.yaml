@@ -1,0 +1,43 @@
+columns:
+    active:
+        label: 'lovata.toolbox::lang.field.active'
+        type: switch
+        sortable: true
+        searchable: false
+    name:
+        label: 'lovata.toolbox::lang.field.name'
+        type: text
+        sortable: true
+        searchable: true
+    discount_value:
+        label: 'lovata.discountsshopaholic::lang.field.discount_value'
+        type: partial
+        path: $/lovata/discountsshopaholic/controllers/discounts/_discount_value.htm
+        sortable: false
+        searchable: false
+    date_begin:
+        label: 'lovata.discountsshopaholic::lang.field.date_begin'
+        type: datetime
+        sortable: true
+        searchable: false
+    date_end:
+        label: 'lovata.discountsshopaholic::lang.field.date_end'
+        type: datetime
+        sortable: true
+        searchable: false
+    id:
+        label: 'lovata.toolbox::lang.field.id'
+        type: text
+        searchable: true
+        sortable: true
+        width: 100px
+    created_at:
+        label: 'lovata.toolbox::lang.field.created_at'
+        type: timetense
+        sortable: true
+        invisible: true
+    updated_at:
+        label: 'lovata.toolbox::lang.field.updated_at'
+        type: timetense
+        sortable: true
+        invisible: true

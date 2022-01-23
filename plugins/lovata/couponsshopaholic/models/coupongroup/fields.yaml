@@ -1,0 +1,62 @@
+fields:
+tabs:
+    fields:
+        active:
+            label: 'lovata.toolbox::lang.field.active'
+            tab: 'lovata.toolbox::lang.tab.settings'
+            span: left
+            default: 0
+            type: switch
+        name:
+            label: 'lovata.toolbox::lang.field.name'
+            tab: 'lovata.toolbox::lang.tab.settings'
+            span: left
+            type: text
+        mechanism:
+            label: 'lovata.ordersshopaholic::lang.field.promo_mechanism'
+            tab: 'lovata.toolbox::lang.tab.settings'
+            span: right
+            type: relation
+            nameFrom: relation_name
+        date_begin:
+            label: 'lovata.toolbox::lang.field.date_begin'
+            tab: 'lovata.toolbox::lang.tab.settings'
+            span: left
+            type: datepicker
+        date_end:
+            label: 'lovata.toolbox::lang.field.date_end'
+            tab: 'lovata.toolbox::lang.tab.settings'
+            span: right
+            type: datepicker
+        max_usage:
+            label: 'lovata.couponsshopaholic::lang.field.max_usage'
+            tab: 'lovata.toolbox::lang.tab.settings'
+            span: left
+            default: 0
+            type: number
+        max_usage_per_user:
+            label: 'lovata.couponsshopaholic::lang.field.max_usage_per_user'
+            tab: 'lovata.toolbox::lang.tab.settings'
+            span: right
+            type: number
+        promo_block:
+            label: 'lovata.shopaholic::lang.field.promo_block'
+            emptyOption: 'lovata.toolbox::lang.field.empty'
+            span: left
+            type: relation
+            tab: 'lovata.toolbox::lang.tab.settings'
+        coupon:
+            span: full
+            context:
+                - update
+                - preview
+            type: partial
+            path: ~/plugins/lovata/couponsshopaholic/controllers/coupongroups/_coupon.htm
+            tab: 'lovata.couponsshopaholic::lang.tab.coupon'
+        generate_coupon_button:
+            tab: 'lovata.couponsshopaholic::lang.tab.coupon'
+            type: partial
+            context:
+                - update
+                - preview
+            path: $/lovata/couponsshopaholic/controllers/coupongroups/_generate_coupon_button.htm

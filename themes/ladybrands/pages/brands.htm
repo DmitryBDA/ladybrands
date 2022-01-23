@@ -1,0 +1,104 @@
+title = "Бренды"
+url = "/brands"
+layout = "default"
+meta_title = "Бренды - тайтл"
+meta_description = "Бренды - описание"
+is_hidden = 0
+
+[viewBag]
+localeTitle[en] = "Brands"
+
+[BrandList]
+==
+<?php
+function onInit() {
+
+  $arBreadcrumbs[] = [
+    'name' => 'Бренды',
+'url' => '',
+'active' => true,
+];
+
+$arBreadcrumbs[] = [
+'name' => 'Главная',
+'url' => \Cms\Classes\Page::url('index'),
+'active' => false,
+];
+
+$arBreadcrumbs = array_reverse($arBreadcrumbs);
+
+$this['arBreadcrumbs'] = $arBreadcrumbs;
+
+}
+
+function onStart() {
+
+
+}
+?>
+==
+{# Get brand collection #}
+{% set obBrandList = BrandList.make().active().sort() %}
+
+{#<section>
+  <div class="container">
+    {% partial 'element/breadcrumbs' arBreadcrumbs=arBreadcrumbs %}
+    <div class="d-flex flex-wrap align-items-center">
+      <h1 class="mr-3">{{'Бренды' | _ }}</h1>
+    </div>
+    <div class="my-5">
+      <div class="row fluid">
+        {% for obBrand in obBrandList %}
+          <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 border-line">
+            <div class="card-prod d-flex flex-column py-3">
+              <a href="{{ 'brands/page'|page({slug:obBrand.slug}) }}" class="d-block h280 d-flex align-items-center">
+                {% if obBrand.preview_image %}
+                  <img src="{{ obBrand.preview_image.path }}" class="d-block mx-auto">
+                {% else %}
+                  <img src="{{'assets/images/no-photo.png'|theme }}" class="d-block mx-auto">
+                {% endif %}
+              </a>
+              <div class="mt-auto">
+                <h3 class="text-center">{{ obBrand.name }}</h3>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+    <hr>
+  </div>
+</section>#}
+
+{% put breadcrumbs %}
+  <div class="breadcrumb-holder">
+    <div class="container">
+      <div class="d-flex justify-content-between">
+        {% partial('components/breadcrumbs')  %}
+      </div>
+    </div>
+  </div>
+{% endput %}
+
+<section class="section-two-columns">
+  <div class="container">
+    <div class="row">
+      {% for obBrand in obBrandList %}
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 border-line">
+          <div class="card-prod d-flex flex-column py-3">
+            <a href="{{ obBrand.getPageUrl('brands-routing')}}" class="d-block h280 d-flex align-items-center">
+              {% if obBrand.preview_image %}
+                <img src="{{ obBrand.preview_image.path }}" class="d-block mx-auto">
+              {% else %}
+                <img src="{{'assets/images/no-photo.png'|theme }}" class="d-block mx-auto">
+              {% endif %}
+            </a>
+          {#  <div class="mt-auto">
+              <h3 class="text-center">{{ obBrand.name }}</h3>
+            </div>#}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

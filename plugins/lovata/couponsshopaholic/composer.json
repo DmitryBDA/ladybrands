@@ -1,0 +1,8 @@
+{
+    "name": "lovata/couponsshopaholic-plugin",
+    "type": "october-plugin",
+    "description": "Allow you to create coupons with discounts",
+    "require": {
+        "composer/installers": "~1.0"
+    }
+}

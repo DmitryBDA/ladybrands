@@ -1,0 +1,2 @@
+{% set obList = ProductList.make().wishList().active() %}
+<a href="/wishlist"><i class="fa fa-heart-o"></i> {% if obList.count() != 0 %}( {{ obList.count() }} ){% endif %} </a>

@@ -1,0 +1,17 @@
+title: 'lovata.discountsshopaholic::lang.discount.list_title'
+modelClass: Lovata\DiscountsShopaholic\Models\Discount
+list: $/lovata/discountsshopaholic/models/discount/columns.yaml
+recordUrl: 'lovata/discountsshopaholic/discounts/update/:id'
+noRecordsMessage: 'backend::lang.list.no_records'
+recordsPerPage: '10'
+showSetup: true
+showCheckboxes: true
+showSorting: 1
+defaultSort:
+    column: id
+    direction: desc
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'
+filter: _config_filter.yaml

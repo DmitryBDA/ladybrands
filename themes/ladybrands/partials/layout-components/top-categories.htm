@@ -1,0 +1,22 @@
+
+{% if obCategoryListTop.isNotEmpty() %}
+<div class="top-categories">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <ul class="nav top-cat-menu">
+          {% for obCategory in obCategoryListTop %}
+            <li data-id="{{ obCategory.id }}">
+              <a href="{{ obCategory.getPageUrl('catalog-routing') }}">
+                {{ obCategory.name }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+
+      </div>
+
+  </div>
+</div>
+</div>
+{% endif %}

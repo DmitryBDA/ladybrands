@@ -1,0 +1,96 @@
+url = "/otzyv/glavnye"
+layout = "static"
+title = "Отзывы на профкосметику и аксессуары"
+is_hidden = 0
+
+[reviews]
+categoryFilter = "glavnye"
+
+[ProductList]
+sorting = "no"
+==
+<?php
+function onInit()
+{
+  $categoryReviews = $this->reviews->getCategory('glavnye');
+  $reviews = $this->reviews->reviews($categoryReviews);
+  $this['reviews'] = $reviews;
+}
+
+function onStart() {
+
+}
+?>
+==
+<div>
+  <p>
+    Уважаемые наши покупатели!
+  </p>
+  <p>
+    Общаясь с вами, мы понимаем, что всем вам очень интересно услышать отзывы о каком-то конкретном косметическом
+    средстве, его эффективности и целесообразности его приобретения. Поэтому мы решили проводить на своем сайте
+    различные опросы и открыть сбор отзывов на профкосметику. Мы готовы выслушать и опубликовать мнение каждой нашей
+    покупательницы!
+  </p>
+  <p>
+    Просим вас поддержать нашу идею и найти несколько минут, чтобы ответить на предложенные вопросы или написать отзыв
+    на косметическое средство, которым Вы пользовались и рассказать о своих впечатлениях. Уверены, что всем будет
+    интересно почитать отзывы и мнения других наших покупателей.
+  </p>
+</div>
+<div class="col-md-12">
+
+  <div id="list-view" class="products-list products-holder tab-pane active show" style="display: block;">
+
+    <div class="_list_view_wrapper">
+
+      {% for review in reviews %}
+        {% set obProduct =  ProductList.make([review.product_id]).first() %}
+
+        {% if obProduct.preview_image.title is not empty %}
+          {% set imageALT = obProduct.preview_image.title %}
+        {% elseif obProduct.preview_image.description is not empty %}
+          {% set imageALT = obProduct.preview_image.description %}
+        {% else %}
+          {% set imageALT = obProduct.name %}
+        {% endif %}
+
+        <div class="list-item">
+          <div class="row">
+            <div class="col-md-4">
+              <a href="{{ obProduct.getPageUrl('catalog-routing') }}">
+                <div class="thumb">
+
+                  <picture>
+                    <source type="image/webp"
+                            srcset="{{ obProduct.preview_image | resize(205, 205, { 'mode': 'crop', 'quality': '85', 'extension': 'webp' }) }}">
+                    <img loading="lazy" src="{{ obProduct.preview_image | resize(205, 205, { 'mode': 'crop'}) }}"
+                         alt="{{ imageALT }}" width="205" height="205">
+                  </picture>
+                </div>
+                <h1>{{ obProduct.name }}</h1>
+              </a>
+            </div>
+            <div class="col-md-8 _shopaholic-product-wrapper" data-product-id="512">
+              <span class="date">{{ review.created_at|date('d.m.Y') }}</span>
+
+              <div style="float: right;" class="rating-mini ml-2">
+                {% for item in 1..review.rating %}
+                  <span style="cursor: default;" class="stop active"></span>
+                {% endfor %}
+              </div>
+              <span style="display: block" class="date">{{ review.name }}</span>
+              <div class="desc">
+                {{review.content|raw}}
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <hr>
+      {% endfor %}
+
+    </div>
+
+  </div>
+</div>

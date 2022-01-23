@@ -1,0 +1,24 @@
+items:
+    -
+        title: Скидки
+        nesting: 0
+        type: static-page
+        url: null
+        code: ''
+        reference: skidki
+        cmsPage: null
+        replace: 0
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+    -
+        title: 'Оплата и доставка'
+        type: url
+        url: /dostavka-i-oplata
+        code: ''
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+name: 'Нижнее меню 2'

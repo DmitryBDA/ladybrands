@@ -1,0 +1,56 @@
+product_property:
+    label: 'lovata.propertiesshopaholic::lang.property.name'
+    manage:
+        form: $/lovata/shopaholic/models/offer/fields.yaml
+        list: $/lovata/shopaholic/models/offer/columns.yaml
+        showSearch: true
+        showSorting: true
+        showCheckboxes: true
+        recordsPerPage: 20
+        defaultSort:
+            column: sort_order
+            direction: asc
+    view:
+        list: $/lovata/propertiesshopaholic/models/property/columns.yaml
+        toolbarButtons: 'add|remove'
+        showSearch: true
+        showSorting: true
+        recordsPerPage: 10
+        defaultSort:
+            column: sort_order
+            direction: asc
+    pivot:
+        form:
+            fields:
+                pivot[groups]:
+                    label: 'lovata.propertiesshopaholic::lang.field.property_groups'
+                    type: checkboxlist
+                    span: left
+offer_property:
+    label: 'lovata.propertiesshopaholic::lang.property.name'
+    manage:
+        form: $/lovata/shopaholic/models/offer/fields.yaml
+        list: $/lovata/shopaholic/models/offer/columns.yaml
+        showSearch: true
+        showSorting: true
+        showCheckboxes: true
+        recordsPerPage: 20
+        defaultSort:
+            column: sort_order
+            direction: asc
+    view:
+        list: $/lovata/propertiesshopaholic/models/property/columns.yaml
+        toolbarButtons: 'add|remove'
+        showSearch: true
+        showSorting: true
+        recordsPerPage: 10
+        defaultSort:
+            column: sort_order
+            direction: asc
+    pivot:
+        form:
+            fields:
+                pivot[groups]:
+                    label: 'lovata.propertiesshopaholic::lang.field.property_groups'
+                    type: checkboxlist
+                    span: left

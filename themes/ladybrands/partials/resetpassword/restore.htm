@@ -1,0 +1,34 @@
+
+
+{#
+<form
+    data-request="{{ __SELF__ }}::onRestorePassword"
+    data-request-update="'{{ __SELF__ }}::reset': '#partialUserResetForm'">
+    <div class="form-group">
+        <label for="userRestoreEmail">Email</label>
+        <input name="email" type="email" class="form-control" id="userRestoreEmail" placeholder="Enter your email">
+    </div>
+
+    <button type="submit" class="btn btn-default">Restore password</button>
+</form>
+
+#}
+
+<div class="form-holder">
+  <p class="lead">
+    <strong>Забыли пароль?</strong> Без проблем! Введите свой адрес электронной почты, чтобы подтвердить свою учетную запись.
+  </p>
+  <form data-request="{{ __SELF__ }}::onRestorePassword"
+        data-request-update="'{{ __SELF__ }}::reset': '#partialUserResetForm'">
+    <div class="control-group">
+      <div class="controls">
+        <div class="form-label ">Email</div>
+        <input type="email" id="userRestoreEmail"  name="email"  class="required span12 cusmo-input" required />
+      </div>
+    </div>
+
+    <div class="button-holder">
+      <button class="cusmo-btn narrow pull-right" type="submit" >Отправить</button>
+    </div>
+  </form>
+</div>

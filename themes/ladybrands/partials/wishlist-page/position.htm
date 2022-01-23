@@ -1,0 +1,78 @@
+{% set obWishList = ProductList.make().wishList().active() %}
+{% set obCartPositionList = Cart.get() %}
+
+ {% if obWishList.isNotEmpty() %}
+   <table class="table ">
+     <thead>
+
+     <th class="col-md-1"></th>
+     <th class="col-md-7">Название</th>
+     <th class="col-md-2 price-column">Цена</th>
+     <th class="col-md-1">&nbsp;</th>
+     <th class="col-md-1">&nbsp;</th>
+     </tr>
+     </thead>
+     <tbody>
+     {% for obProduct in obWishList %}
+
+       {% set obOffer = obProduct.offer.first() %}
+
+       {% if obProduct.preview_image.title is not empty %}
+         {% set imageALT = obProduct.preview_image.title %}
+       {% elseif obProduct.preview_image.description is not empty %}
+         {% set imageALT = obProduct.preview_image.description %}
+       {% else %}
+         {% set imageALT = obProduct.preview_image.file_name %}
+       {% endif %}
+
+       <tr class="_shopaholic-product-wrapper" data-product-id="{{ obProduct.id }}">
+         <td>
+           <div class="thumb">
+             <a href="{{ obProduct.getPageUrl('catalog-routing') }}">
+               <picture>
+                 <source type="image/webp"
+                         srcset="{{ obProduct.preview_image | resize(120, 120, { 'mode': 'crop', 'quality': '85', 'extension': 'webp' }) }}">
+                 <img loading="lazy" src="{{ obProduct.preview_image | resize(120, 120, { 'mode': 'crop'}) }}"
+                      alt="{{ imageALT }}" width="120" height="120">
+               </picture>
+             </a>
+           </div>
+         </td>
+         <td>
+           <div class="desc">
+             <h3><a href="{{ obProduct.getPageUrl('catalog-routing') }}">{{ obProduct.name }}</a></h3>
+             <div class="tag-line">
+               {{ obProduct.preview_text }}
+             </div>
+             {% if obProduct.code %}
+               <div class="pid">Артикул: {{ obProduct.code }}</div>
+             {% endif %}
+           </div>
+
+         </td>
+         <td>
+           <div class="price">
+             {{ obOffer.price }}  {{ obOffer.currency }}
+           </div>
+         </td>
+         <td style="width: 100%">
+           <input type="hidden" name="quantity" value="1">
+           <input type="hidden" name="offer_id" value="{{ obOffer.id }}">
+           {% partial('components/btnAddCart') obCartPositionList=obCartPositionList obOffer=obOffer %}
+         </td>
+         <td>
+           <div class="delete ">
+             <a class="close-btn _wishlist_remove" data-product-id="{{ obProduct.id }}" href="#"></a>
+           </div>
+         </td>
+       </tr>
+     {% endfor %}
+     </tbody>
+   </table>
+   <div class="buttons-holder">
+     <a class="cusmo-btn gray narrow _wishlist_clear" href="#">Очистить избранное</a>
+     <a class="cusmo-btn gray narrow" onclick="history.back();" href="#">назад</a>
+   </div>
+ {% else %}
+   <div>Выш список избранного пуст</div>
+ {% endif %}

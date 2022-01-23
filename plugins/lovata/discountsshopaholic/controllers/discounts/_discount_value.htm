@@ -1,0 +1,12 @@
+<?php
+/** @var \Lovata\DiscountsShopaholic\Models\Discount $record */
+?>
+
+<strong>
+    <?php
+        echo '-'.$record->discount_value;
+        if ($record->discount_type == \Lovata\DiscountsShopaholic\Models\Discount::PERCENT_TYPE) {
+            echo '%';
+        }
+    ?>
+</strong>

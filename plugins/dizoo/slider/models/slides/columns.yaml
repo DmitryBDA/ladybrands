@@ -1,0 +1,25 @@
+columns:
+    imageThumb:
+        label: 'dizoo.slider::lang.strings.image'
+        sortable: false
+        searchable: false
+        type: partial
+        path: img_thumb
+        width: 107px
+    subtitle:
+        label: 'dizoo.slider::lang.strings.slide_subtitle'
+        type: text
+        searchable: true
+    title:
+        label: 'dizoo.slider::lang.strings.slide_title'
+        type: text
+        searchable: true
+    description:
+        label: 'dizoo.slider::lang.strings.slide_description'
+        type: text
+        searchable: true
+        sortable: false
+    sort_order:
+        label: 'dizoo.slider::lang.strings.sort_order'
+        type: number
+        sortable: true

@@ -1,0 +1,16 @@
+columns:
+    value:
+        label: 'lovata.toolbox::lang.field.value'
+        type: text
+        searchable: true
+        sortable: true
+    label:
+        label: 'lovata.toolbox::lang.field.label'
+        type: text
+        searchable: true
+        sortable: true
+    slug:
+        label: 'lovata.toolbox::lang.field.slug'
+        type: text
+        searchable: true
+        sortable: true

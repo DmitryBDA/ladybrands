@@ -1,0 +1,6 @@
+plugin:
+    name: 'lovata.searchshopaholic::lang.plugin.name'
+    description: 'lovata.searchshopaholic::lang.plugin.description'
+    author: Lovata
+    icon: oc-icon-search
+    homepage: ''

@@ -1,0 +1,45 @@
+fields:
+    count:
+        label: 'lovata.toolbox::lang.field.count'
+        span: left
+        required: 1
+        type: text
+    length:
+        label: 'lovata.toolbox::lang.field.length'
+        span: right
+        placeholder: 8
+        type: text
+    hidden:
+        label: 'lovata.toolbox::lang.field.hidden'
+        comment: 'lovata.couponsshopaholic::lang.field.hidden_description'
+        span: left
+        type: checkbox
+    part_count:
+        label: 'lovata.couponsshopaholic::lang.field.part_count'
+        comment: 'lovata.couponsshopaholic::lang.field.part_count_description'
+        span: right
+        placeholder: 1
+        type: text
+    use_lowercase:
+        label: 'lovata.couponsshopaholic::lang.field.use_lowercase'
+        span: left
+        type: checkbox
+    use_uppercase:
+        label: 'lovata.couponsshopaholic::lang.field.use_uppercase'
+        span: left
+        type: checkbox
+    part_separator:
+        label: 'lovata.couponsshopaholic::lang.field.part_separator'
+        span: right
+        placeholder: '-'
+        type: text
+    use_number:
+        label: 'lovata.couponsshopaholic::lang.field.use_number'
+        span: left
+        type: checkbox
+    user_list:
+        label: 'lovata.couponsshopaholic::lang.field.user_list'
+        comment: 'lovata.couponsshopaholic::lang.field.user_list_description'
+        commentHtml: true
+        span: full
+        type: textarea

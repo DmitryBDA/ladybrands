@@ -1,0 +1,43 @@
+columns:
+    hidden:
+        label: 'lovata.toolbox::lang.field.hidden'
+        type: switch
+        sortable: true
+        searchable: false
+    code:
+        label: 'lovata.toolbox::lang.field.code'
+        type: text
+        sortable: true
+        searchable: true
+    total_usage:
+        label: 'lovata.couponsshopaholic::lang.field.usage'
+        type: text
+        sortable: false
+        searchable: false
+    max_usage:
+        label: 'lovata.couponsshopaholic::lang.field.max_usage'
+        type: text
+        sortable: true
+        searchable: false
+    user_email:
+        label: 'lovata.ordersshopaholic::lang.field.user'
+        relation: user
+        select: email
+        sortable: false
+        searchable: false
+    id:
+        label: 'lovata.toolbox::lang.field.id'
+        type: text
+        searchable: true
+        sortable: true
+        width: 100px
+    created_at:
+        label: 'lovata.toolbox::lang.field.created_at'
+        type: timetense
+        sortable: true
+        invisible: true
+    updated_at:
+        label: 'lovata.toolbox::lang.field.updated_at'
+        type: timetense
+        sortable: true
+        invisible: true

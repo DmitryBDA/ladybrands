@@ -1,0 +1,89 @@
+items:
+    -
+        title: Скидки
+        nesting: 0
+        type: static-page
+        url: null
+        code: ''
+        reference: skidki
+        cmsPage: null
+        replace: 0
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+    -
+        title: 'Доставка и оплата'
+        nesting: 0
+        type: static-page
+        url: null
+        code: ''
+        reference: dostavka-i-oplata
+        cmsPage: null
+        replace: 0
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+    -
+        title: Отзывы
+        nesting: 0
+        type: static-page
+        url: null
+        code: ''
+        reference: otzyvy
+        cmsPage: null
+        replace: 0
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+    -
+        title: 'О нас'
+        nesting: 0
+        type: static-page
+        url: null
+        code: ''
+        reference: o-nas
+        cmsPage: null
+        replace: 0
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+    -
+        title: Друзья
+        nesting: 0
+        type: static-page
+        url: null
+        code: ''
+        reference: druzya
+        cmsPage: null
+        replace: 0
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+    -
+        title: Контакты
+        nesting: 0
+        type: static-page
+        url: null
+        code: ''
+        reference: kontakty
+        cmsPage: null
+        replace: 0
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+    -
+        title: Бренды
+        type: cms-page
+        code: ''
+        reference: brands
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+name: 'Верхнее меню'

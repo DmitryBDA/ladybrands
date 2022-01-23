@@ -1,0 +1,15 @@
+property_value:
+  label: 'lovata.propertiesshopaholic::lang.property_value.name'
+  manage:
+    list: $/lovata/propertiesshopaholic/models/propertyvalue/columns.yaml
+    form: $/lovata/propertiesshopaholic/models/propertyvalue/create_fields.yaml
+    showSearch: true
+    showSorting: true
+    recordsPerPage: 10
+  view:
+    list: $/lovata/propertiesshopaholic/models/propertyvalue/columns.yaml
+    recordUrl: lovata/propertiesshopaholic/propertyvalues/update/:id
+    toolbarButtons: 'create|add|remove|delete'
+    showSearch: true
+    showSorting: true
+    recordsPerPage: 10

@@ -1,0 +1,57 @@
+{% set obCartPositionList = Cart.get() %}
+
+{% if arProductList is not empty %}
+
+  {% for obProduct in arProductList %}
+
+    {% set obOffer = obProduct.offer.first() %}
+
+    {% if obProduct.preview_image.title is not empty %}
+      {% set imageALT = obProduct.preview_image.title %}
+    {% elseif obProduct.preview_image.description is not empty %}
+      {% set imageALT = obProduct.preview_image.description %}
+    {% else %}
+      {% set imageALT = obProduct.name %}
+    {% endif %}
+
+    <div class="list-item">
+      <div class="row">
+        <div class="col-md-4 col-12">
+          <div class="thumb text-center"><a href="{{ obProduct.getPageUrl('catalog-routing') }}">
+            <picture>
+              <source type="image/webp"
+                      srcset="{{ obProduct.preview_image | resize(205, 205, { 'mode': 'fit', 'quality': '85', 'extension': 'webp' }) }}">
+              <img loading="lazy" src="{{ obProduct.preview_image | resize(205, 205, { 'mode': 'fit'}) }}"
+                   alt="{{ imageALT }}" class="m-auto ">
+            </picture></a>
+          </div>
+        </div>
+        <div class="col-md-8 col-12 _shopaholic-product-wrapper" data-product-id="{{ obProduct.id }}">
+          <h2><a href="{{ obProduct.getPageUrl('catalog-routing') }}">{{ obProduct.name }}</a></h2>
+
+          <div class="price">
+            <span>{{ obOffer.price }} {{ obOffer.currency }}</span>
+            {% if obOffer.discount_price_value > 0 %}<span class="old">{{ obOffer.old_price }} {{ obOffer.currency }}</span>{% endif %}
+          </div>
+          <div class="buttons-holder">
+            <input type="hidden" name="quantity" value="1">
+            <input type="hidden" name="offer_id" value="{{ obOffer.id }}">
+            {% partial('components/btnAddCart') obCartPositionList=obCartPositionList obOffer=obOffer %}
+            <a class="cusmo-btn gray add-button" href="{{ obProduct.getPageUrl('catalog-routing') }}">Подробнее</a>
+
+            {% if obList.has(obProduct.id) %}
+              <a class="add-to-wishlist-btn _btn_wishlist" data-product-id="{{ obProduct.id }}" href="#"><i
+                  class="fa fa-minus"></i> Удалить из избранного</a>
+            {% else %}
+              <a class="add-to-wishlist-btn _btn_wishlist" data-product-id="{{ obProduct.id }}" href="#"><i
+                  class="fa fa-plus"></i> Добавить в избранное</a>
+            {% endif %}
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  {% endfor %}
+
+{% endif %}

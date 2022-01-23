@@ -1,0 +1,28 @@
+items:
+    -
+        title: Отзывы
+        nesting: 0
+        type: static-page
+        url: null
+        code: ''
+        reference: otzyvy
+        cmsPage: null
+        replace: 0
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+    -
+        title: Акции
+        nesting: 0
+        type: static-page
+        url: null
+        code: ''
+        reference: akcii
+        cmsPage: null
+        replace: 0
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+name: 'Нижнее меню 3'

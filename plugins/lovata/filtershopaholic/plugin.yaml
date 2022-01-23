@@ -1,0 +1,6 @@
+plugin:
+    name: 'lovata.filtershopaholic::lang.plugin.name'
+    description: 'lovata.filtershopaholic::lang.plugin.description'
+    author: Lovata
+    icon: oc-icon-filter
+    homepage: ''

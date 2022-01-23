@@ -1,0 +1,50 @@
+<div class="products-list-head">
+  <h1>{{obActiveCategory.name}}</h1>
+  <div class="tag-line">
+    {# Nulla tellus arcu,<br> #}
+    {# fermentum et interdum eu... #}
+  </div>
+  <div class="image-holder d-none d-md-block">
+    <img alt="{{obActiveCategory.name}}" src="{{ obActiveCategory.preview_image | resize(230, 230, { 'mode': 'crop'}) }}"/>
+  </div>
+
+</div>
+
+<div id="grid-view" class="products-grid products-holder active tab-pane">
+
+    {% set idx = 1 %}
+    {% for obCategory in obActiveCategory.children %}
+
+      {% if obCategory.preview_image.title is not empty %}
+        {% set imageALT = obCategory.preview_image.title %}
+      {% elseif obCategory.preview_image.description is not empty %}
+        {% set imageALT = obCategory.preview_image.description %}
+      {% else %}
+        {% set imageALT = obCategory.name %}
+      {% endif %}
+
+      {% if idx == 1 %}
+        <div class="row">
+      {% endif %}
+      <div class="col-6 col-md-4">
+        <div class="product-item">
+          <a href="{{ obCategory.getPageUrl('catalog-routing') }}">
+            <picture>
+              <source type="image/webp" srcset="{{ obCategory.preview_image | resize(220, 220, { 'mode': 'fit', 'quality': '85', 'extension': 'webp' }) }}">
+              <img loading="lazy" src="{{ obCategory.preview_image | resize(220, 220, { 'mode': 'fit'}) }}" alt="{{imageALT}}" class="img-fluid m-auto">
+            </picture>
+            <h2>{{ obCategory.name }}</h2>
+          </a>
+        </div>
+      </div>
+      {% if idx == 3 %}
+        </div>
+        {% set idx = 0 %}
+      {% endif %}
+
+      {% set idx = idx + 1 %}
+    {% endfor %}
+
+
+
+</div>

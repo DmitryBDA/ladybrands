@@ -1,0 +1,115 @@
+{% set obCartPositionList = Cart.get() %}
+
+{% if obCartPositionList.isNotEmpty() %}
+
+  <div class="container">
+    <div class="phase-title current mb-5">
+      <h1>Оформление заказа
+      </h1>
+    </div>
+    <form  method="post" class="_shopaholic-order-form">
+
+      <div class="row">
+        {% if user %}
+        {% else %}
+         <div class="buttons-holder m-auto">
+           <a href="#myModal" role="button" class="cusmo-btn narrow" data-toggle="modal">Я уже зарегистрирован</a>
+         </div>
+        {% endif %}
+        <div class="col-12">
+          <div class="form-holder shipping-form-area">
+          {#  <div class="checkbox-holder">
+              <input type="checkbox" class="iCheck"> Зарегистрировать меня автоматически
+            </div>#}
+            <h4>Контактные данные</h4>
+
+           <div class="form-inline">
+
+            <div class="input-group mb-2 mr-sm-2">
+              <div class="controls">
+                <div class="form-label ">Имя</div>
+                <input type="text" name="name" class="required span12 cusmo-input _shopaholic-order-field" data-group="user" data-field="name" value="{% if user %}{{ user.name }}{% endif %}" required/>
+              </div>
+            </div>
+            <div class="input-group mb-2 mr-sm-2">
+              <div class="controls">
+                <div class="form-label ">Телефон</div>
+                <input type="text" name="phone" class="required span12 cusmo-input _input_phone" value="{% if user %}{{ user.phone }}{% endif %}" required/>
+              </div>
+            </div>
+            <div class="input-group mb-2 mr-sm-2">
+              <div class="controls">
+                <div class="form-label ">Email</div>
+                <input type="text" name="email" class="required span12 cusmo-input" value="{% if user %}{{ user.email }}{% endif %}" required/>
+              </div>
+            </div>
+           </div>
+
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row">
+        {% if obShippingTypeList.isNotEmpty() %}
+          <div class="col-6">
+            <div class="form-holder right-border">
+              <h4>Способ доставки</h4>
+
+              {% for obShippingType in obShippingTypeList %}
+                <div class="checkbox-holder">
+                  <input
+                    type="radio"
+                    id="shipping-type-{{ obShippingType.id }}"
+                    name="payment_method"
+                    value="{{ obShippingType.id }}"
+                    class="iCheck"
+                    {% if loop.index == 1 %}checked{% endif %}
+                  >
+                  {{ obShippingType.name }}
+                </div>
+              {% endfor %}
+
+              <div class="control-group">
+                <div class="controls">
+                  <div class="form-label ">Адрес доставки</div>
+                  <input type="text" name="address" class="required span12 cusmo-input "/>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        {% endif %}
+
+        {% if obPaymentMethodList.isNotEmpty() %}
+          <div class="col-6">
+            <div class="form-holder right-border">
+              <h4>Метод оплаты</h4>
+
+              {% for obPaymentMethod in obPaymentMethodList %}
+                <div class="checkbox-holder">
+                  <input type="radio"
+                         id="payment-method-{{ obPaymentMethod.id }}"
+                         name="shipping_type"
+                         value="{{ obPaymentMethod.id }}"
+                         class="iCheck"
+                         {% if loop.index == 1 %}checked{% endif %}
+                  > {{ obPaymentMethod.name }}
+                </div>
+              {% endfor %}
+            </div>
+
+          </div>
+        {% endif %}
+      </div>
+      <div class="buttons-holder">
+        <button class="cusmo-btn narrow" type="submit">Оформить заказ</button>
+      </div>
+    </form>
+
+  </div>
+
+{% endif %}
+
+
+

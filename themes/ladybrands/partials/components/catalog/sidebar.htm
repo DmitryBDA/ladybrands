@@ -1,0 +1,161 @@
+<div class="sidebar">
+  <div class="accordion-widget category-accordions">
+    <div class="accordion">
+      {% if obCategoryList.isNotEmpty() %}
+        {% for obCategory in obCategoryList %}
+          <div class="accordion-group">
+            {% if obCategory.children.isNotEmpty() %}
+            <div class="accordion-heading">
+              <a class="accordion-toggle {% if obCategory.id == parentCategory.id %}collapsed{% endif %}" {% if obCategory.id == parentCategory.id %} aria-expanded="true" {% endif %} data-toggle="collapse" href="#collapse{{ obCategory.id }}">
+                {{ obCategory.name }}
+              </a>
+            </div>
+            {%else%}
+            <div class="accordion-heading">
+              <a class="accordion-nontoggle"  href="{{ obCategory.getPageUrl('catalog-routing') }}">
+                {{ obCategory.name }}
+              </a>
+            </div>
+            {% endif %}
+            {% if obCategory.children.isNotEmpty() %}
+              <div id="collapse{{ obCategory.id }}" class="accordion-body collapse in {% if obCategory.id == parentCategory.id %}show{% endif %}">
+                <div class="accordion-inner">
+                  <ul class="list-group">
+                    {% for obChildCategory in obCategory.children %}
+                      <li><a class="{% if obChildCategory.id == obActiveCategory.id %}active{% endif %}" href="{{ obChildCategory.getPageUrl('catalog-routing') }}">{{ obChildCategory.name }}</a>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                </div>
+              </div>
+
+            {% endif %}
+
+          </div>
+        {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+
+  <hr>
+  {% if( obActiveCategory and obProduct == null and obActiveCategory.children.isEmpty()) or (obActiveCategory == null and obProduct == null) %}
+    <div class="accordion-widget filter-accordions">
+
+      <div class="accordion">
+
+
+
+        <div style="position: relative" class="_filter_elements">
+
+
+          <div class="accordion-group">
+            <div class="accordion-heading">
+              <a class="accordion-toggle" data-toggle="collapse" href="#collapse13">
+               Цена
+              </a>
+            </div>
+            <div id="collapse13" class="collapse show price-range">
+              <div class="accordion-inner price-range-holder">
+
+              {#  <input type="text" class="price-slider span12"
+                       data-to="{% if fPriceTo %}{{ fPriceTo }}{% else %}{{ obOfferMaxPriceTotal.price_value }}{% endif %}"
+                       data-from="{% if fPriceFrom %}{{ fPriceFrom }}{% else %}{{ obOfferMinPriceTotal.price_value }}{% endif %}"
+                       data-min-total="{{ obOfferMinPriceTotal.price_value }}"
+                       data-max-total="{{ obOfferMaxPriceTotal.price_value }}"
+                       value="">
+                <div class="min-value _min_value">
+                  {{ obOfferMinPriceTotal.price_value }}
+                </div>
+                <div class="max-value _max_value">
+                  {{ obOfferMaxPriceTotal.price_value }}
+                </div>#}
+                <div >
+                  <input class="_input_min_price _input_price cusmo-input" style="width: 80px" type="number" name="filter-min-price"
+                         placeholder="от {{ obOfferMinPriceTotal.price_value }}"
+                         value="{% if fPriceFrom %}{{ fPriceFrom }}{% endif %}">
+                  <input class="_input_max_price _input_price cusmo-input" style="width: 80px" type="number" name="filter-max-price"
+                         placeholder=" до {{ obOfferMaxPriceTotal.price_value }}"
+                         value="{% if fPriceTo %}{{ fPriceTo }}{% endif %}">
+                </div>
+                <div style="margin-top: 33px; display: none" class="_shopaholic-price-filter">
+                  <input class="_input_min_price _input_price_event" style="width: 80px" type="number"
+                         name="filter-min-price" placeholder="от {{ obOfferMinPriceTotal.price_value }}"
+                         value="{% if fPriceFrom %}{{ fPriceFrom }}{% endif %}">
+                  <input class="_input_max_price" style="width: 80px" type="number" name="filter-max-price"
+                         placeholder=" до {{ obOfferMaxPriceTotal.price_value }}"
+                         value="{% if fPriceTo %}{{ fPriceTo }}{% endif %}">
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          {% if obBrandList.isNotEmpty %}
+            <div class="accordion-group">
+              <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" href="#collapse14">
+                  Бренды
+                </a>
+              </div>
+              <div id="collapse14" class="collapse show">
+                <div class="accordion-inner _shopaholic-brand-filter-wrapper" data-filter-type="checkbox">
+                  <ul>
+                    {% for obBrand in obBrandList %}
+                      <li>
+                        <input
+                          type="checkbox"
+                          name="filter-brand"
+                          value="{{ obBrand.slug }}"
+                          id="brand-{{ obBrand.id }}"
+                          {% if obBrand.id in arAppliedBrandList %}checked{% endif %}
+                        >
+                        <label for="brand-{{ obBrand.id }}">{{ obBrand.name }}</label>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          {% endif %}
+
+          {% if obProductPropertyList.isNotEmpty() %}
+
+            {% for obProperty in obProductPropertyList if obProperty.hasValue() %}
+              <div class="accordion-group">
+                <div class="accordion-heading">
+                  <a class="accordion-toggle" data-toggle="collapse" href="#{{ obProperty.slug }}">
+                    {{ obProperty.filter_name }}
+                  </a>
+                </div>
+                <div id="{{ obProperty.slug }}" class="accordion-body collapse show _shopaholic-filter-wrapper" data-filter-type="checkbox" data-property-id="{{ obProperty.id }}">
+                  <div class="accordion-inner">
+                    <ul>
+                    {% for obPropertyValue in obProperty.property_value.sort() %}
+                      <li>
+
+                      <input
+                        type="checkbox"
+                        name="property[{{ obProperty.id }}][]"
+                        id="property-{{ obProperty.id }}-{{ obPropertyValue.id }}"
+                        {% if arAppliedPropertyList[obProperty.id] is not empty and obPropertyValue.slug in arAppliedPropertyList[obProperty.id] %}
+                      checked="checked"
+                    {% endif %}
+                        value="{{ obPropertyValue.slug }}">
+                        <label for="property-{{ obProperty.id }}-{{ obPropertyValue.id }}">{{ obPropertyValue.value }}</label>
+                      </li>
+                    {% endfor %}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          {% endif %}
+          <button style="display: none" class="_filter_start btn-filter">Показать</button>
+
+        </div>
+
+      </div>
+    </div>
+  {% endif %}
+</div>
+

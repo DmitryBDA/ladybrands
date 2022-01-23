@@ -1,0 +1,23 @@
+fields:
+    quantity:
+        label: 'lovata.shopaholic::lang.field.quantity'
+        span: full
+        type: number
+        default: 1
+    _product:
+        label: 'lovata.ordersshopaholic::lang.label.product'
+        span: full
+        scope: active
+        type: recordfinder
+        useRelation: false
+        recordsPerPage: 10
+        modelClass: Lovata\Shopaholic\Models\Product
+        list: $/lovata/shopaholic/models/product/columns.yaml
+    offer_id:
+        label: 'lovata.ordersshopaholic::lang.label.offer'
+        span: full
+        type: dropdown
+        dependsOn: _product
+    item_type:
+        type: partial
+        path: $/lovata/ordersshopaholic/controllers/orderpositions/_item_type.htm

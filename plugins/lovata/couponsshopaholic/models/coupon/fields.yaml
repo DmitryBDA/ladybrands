@@ -1,0 +1,21 @@
+fields:
+    hidden:
+        label: 'lovata.toolbox::lang.field.hidden'
+        span: left
+        default: 0
+        type: switch
+    code:
+        label: 'lovata.toolbox::lang.field.code'
+        span: full
+        required: 1
+        type: text
+    max_usage:
+        label: 'lovata.couponsshopaholic::lang.field.max_usage'
+        span: full
+        type: text
+    user:
+        label: 'lovata.ordersshopaholic::lang.field.user'
+        emptyOption: 'lovata.toolbox::lang.field.empty'
+        span: full
+        type: relation
+        nameFrom: email

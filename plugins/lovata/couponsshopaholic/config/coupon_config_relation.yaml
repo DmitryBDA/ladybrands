@@ -1,0 +1,21 @@
+coupon_group:
+    label: 'lovata.couponsshopaholic::lang.coupon_group.name'
+    manage:
+        list: $/lovata/couponsshopaholic/models/coupongroup/columns.yaml
+        showSearch: true
+        showSorting: true
+        showCheckboxes: true
+        recordsPerPage: 10
+        defaultSort:
+            column: id
+            direction: desc
+    view:
+        list: $/lovata/couponsshopaholic/models/coupongroup/columns.yaml
+        recordUrl: lovata/couponsshopaholic/coupongroups/update/:id
+        toolbarButtons: add|remove
+        showSearch: true
+        showSorting: true
+        recordsPerPage: 10
+        defaultSort:
+            column: id
+            direction: desc

@@ -1,0 +1,35 @@
+fields:
+    is_global:
+        label: 'lovata.propertiesshopaholic::lang.field.property_set_is_global'
+        span: left
+        type: checkbox
+    name:
+        label: 'lovata.toolbox::lang.field.name'
+        span: left
+        type: text
+        required: true
+    description:
+        label: 'lovata.toolbox::lang.field.description'
+        type: textarea
+        span: right
+        size: small
+    code:
+        label: 'lovata.toolbox::lang.field.code'
+        span: left
+        type: text
+        required: true
+        preset:
+            field: name
+            type: slug
+tabs:
+    fields:
+        product_property:
+            tab: 'lovata.propertiesshopaholic::lang.field.product_property_list'
+            type: 'partial'
+            path: '~/plugins/lovata/propertiesshopaholic/controllers/properties/_property_product_link.htm'
+            context: ['update']
+        offer_property:
+            tab: 'lovata.propertiesshopaholic::lang.field.offer_property_list'
+            type: 'partial'
+            path: '~/plugins/lovata/propertiesshopaholic/controllers/properties/_property_offer_link.htm'
+            context: ['update']

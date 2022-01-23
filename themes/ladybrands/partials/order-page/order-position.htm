@@ -1,0 +1,56 @@
+{% set obOffer = obOrderPosition.item %}
+{% set obProduct = obOffer.product %}
+{% set obPriceData = obOrderPosition.price_data %}
+
+  {% if obProduct.preview_image.title is not empty %}
+    {% set imageALT = obProduct.preview_image.title %}
+  {% elseif obProduct.preview_image.description is not empty %}
+    {% set imageALT = obProduct.preview_image.description %}
+  {% else %}
+    {% set imageALT = obProduct.preview_image.file_name %}
+  {% endif %}
+
+<tr>
+  <td>
+    <div class="thumb">
+      <a href="{{ obProduct.getPageUrl('catalog-routing') }}">
+      <picture>
+        <source type="image/webp"
+                srcset="{{ obProduct.preview_image | resize(120, 120, { 'mode': 'crop', 'quality': '85', 'extension': 'webp' }) }}">
+        <img loading="lazy" src="{{ obProduct.preview_image | resize(120, 120, { 'mode': 'crop'}) }}"
+             alt="{{ imageALT }}" width="120" height="120">
+      </picture>
+      </a>
+    </div>
+  </td>
+  <td>
+    <div class="desc">
+      <h3>{{ obProduct.name }}</h3>
+      <div class="tag-line">
+        Soft Clean Silky Hydrating Lotion
+      </div>
+      <div class="pid">Артикул: {{ obProduct.code }}</div>
+    </div>
+
+  </td>
+  <td>
+
+    <div class="price">
+      {{ obOffer.price }}  {{ obOffer.currency }}
+    </div>
+
+  </td>
+  <td >
+    <div class="price">
+      {{ obOrderPosition.quantity }}
+    </div>
+  </td>
+
+  <td>
+
+    <div class="price">
+      {{ obOrderPosition.total_price }} {{ obOrderPosition.currency_symbol }}
+    </div>
+
+  </td>
+</tr>

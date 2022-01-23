@@ -1,0 +1,9 @@
+{% if isLoadMore %}
+<div class="load-more-holder">
+  <a  data-request="onLoadMoreLabel"
+      data-request-data="mode: '{{ label }}', page: '{{ iPage }}'"
+      href="#" class="load-more">
+      Показать еще
+  </a>
+</div>
+{% endif %}

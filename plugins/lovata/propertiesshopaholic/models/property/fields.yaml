@@ -1,0 +1,74 @@
+fields:
+    active:
+        label: 'lovata.toolbox::lang.field.active'
+        span: left
+        default: 1
+        type: switch
+    settings[is_translatable]:
+        label: 'lovata.toolbox::lang.field.property_is_translatable'
+        span: right
+        type: checkbox
+    name:
+        label: 'lovata.toolbox::lang.field.name'
+        span: left
+        required: 1
+        type: text
+    type:
+        label: 'lovata.toolbox::lang.field.type'
+        span: right
+        type: dropdown
+    external_id:
+        label: 'lovata.toolbox::lang.field.external_id'
+        span: left
+        type: text
+    settings[tab]:
+        label: 'lovata.toolbox::lang.field.property_tab'
+        span: right
+        type: text
+    'property_value':
+        label: 'lovata.toolbox::lang.field.property_list_value'
+        prompt: 'lovata.toolbox::lang.button.add_property_value'
+        span: right
+        type: partial
+        trigger:
+            action: show
+            field: type
+            condition: 'value[select] || value[checkbox] || value[radio] || value[balloon_selector] || value[tag_list]'
+    'settings[datepicker]':
+        label: 'lovata.toolbox::lang.field.property_mode'
+        span: right
+        options:
+            date: 'lovata.toolbox::lang.field.date'
+            datetime: 'lovata.toolbox::lang.field.datetime'
+            time: 'lovata.toolbox::lang.field.time'
+        trigger:
+            action: show
+            field: type
+            condition: 'value[date]'
+        type: dropdown
+    'settings[mediafinder]':
+        label: 'lovata.toolbox::lang.field.property_mode'
+        span: right
+        options:
+            file: 'lovata.toolbox::lang.field.file'
+            image: 'lovata.toolbox::lang.field.image'
+        trigger:
+            action: show
+            field: type
+            condition: 'value[mediafinder]'
+        type: dropdown
+    code:
+        label: 'lovata.toolbox::lang.field.code'
+        span: left
+        type: text
+    measure:
+        label: 'lovata.shopaholic::lang.field.measure'
+        span: left
+        nameFrom: name
+        descriptionFrom: description
+        type: relation
+        emptyOption: 'lovata.toolbox::lang.field.empty'
+    description:
+        label: 'lovata.toolbox::lang.field.description'
+        span: left
+        type: textarea

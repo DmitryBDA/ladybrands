@@ -1,0 +1,8 @@
+<nav>
+  <ul class="pagination">
+    {% for arPagination  in arPaginationList %}
+      <li class="page-item _shopaholic-pagination {{ arPagination.class }}" data-page="{{ arPagination.value }}"><a
+          class="page-link" href="#">{{ arPagination.name }}</a></li>
+    {% endfor %}
+  </ul>
+</nav>

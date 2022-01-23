@@ -1,0 +1,6 @@
+*
+!.gitignore
+!logs
+!temp
+!framework
+!cms

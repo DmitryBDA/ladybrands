@@ -1,0 +1,11 @@
+items:
+    -
+        title: 'Личный кабинет'
+        type: cms-page
+        code: ''
+        reference: account
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+name: Выйти

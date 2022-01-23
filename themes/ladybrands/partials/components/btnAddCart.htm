@@ -1,0 +1,11 @@
+
+{% if obOffer.quantity > 0 %}
+  {% if obCartPositionList.hasOffer(obOffer.id) %}
+    <a class="cusmo-btn add-button" href="/cart">Добавлено</a>
+  {% else %}
+    <a class="cusmo-btn add-button _shopaholic-cart-add" href="#">В корзину</a>
+  {% endif %}
+{% else %}
+    <a class="cusmo-btn add-button" href="#">Под заказ</a>
+{% endif %}
+

@@ -1,0 +1,47 @@
+<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" style="display: none" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Войти</h5>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-12 text-center">
+            <div class="form-holder" style="padding: 0">
+              <form data-request="{{account}}::onSignin"
+                    data-request-redirect="/cart"
+              >
+
+                <div class="control-group mb-2">
+                  <div class="controls">
+                    <div class="form-label ">Email</div>
+                    <input type="text"  name="login"  class="required span12 cusmo-input" required />
+                  </div>
+                </div>
+
+                <div class="control-group mb-2">
+                  <div class="controls">
+                    <div class="form-label ">Пароль</div>
+                    <input type="password"  name="password" class="required span12 cusmo-input"  />
+                  </div>
+                </div>
+
+                <div class="rememberme">
+                  <input type="checkbox" class="iCheck left" name="remember" value="1" > Запомнить меня
+                </div>
+
+                <div class="forget-password ">
+                  <a href="/forgot-password" target="_blank" class="mx-2">восстановить пароль</a>  <a href="/registration" class="mx-2">регистрация</a>
+                </div>
+
+                <div class="button-holder mt-3">
+                  <button class="cusmo-btn narrow" type="submit" >Войти</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

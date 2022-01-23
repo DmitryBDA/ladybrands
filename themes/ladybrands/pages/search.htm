@@ -1,0 +1,119 @@
+title = "Поиск"
+url = "/search"
+layout = "default"
+is_hidden = 0
+
+[ProductList]
+sorting = "no"
+
+[Pagination]
+count_per_page = 12
+available_count_per_page = "12,24,48"
+pagination_limit = 3
+active_class = "active"
+button_list = "prev,first,prev-more,main,last-more,last,next"
+first_button_name = "First"
+first_button_limit = 2
+first_button_number = 1
+first-more_button_name = "..."
+first-more_button_limit = 3
+prev_button_name = "<"
+prev_button_limit = 1
+prev-more_button_name = "..."
+prev-more_button_limit = 3
+next-more_button_name = "..."
+next-more_button_limit = 1
+next_button_name = ">"
+next_button_limit = 1
+last-more_button_name = "..."
+last-more_button_limit = 3
+last_button_name = "Последняя"
+last_button_limit = 2
+last_button_number = 1
+
+[staticBreadcrumbs]
+
+[staticPage]
+useContent = 1
+default = 0
+==
+<?php
+function onInit()
+{
+
+  $arBreadcrumbs[] = [
+    'name' => 'Главная',
+    'url' => \Cms\Classes\Page::url('index'),
+    'active' => false,
+  ];
+  $arBreadcrumbs[] = [
+  'name' => 'Поиск',
+  'active' => true,
+  ];
+
+    $obProductList = $this->ProductList->make()->search(input('q'))->sort($this->ProductList->getSorting())->active();
+    $q = input('q');
+    $iPage = $this->Pagination->getPageFromRequest();
+    $iCount = $obProductList->count();
+    $arPaginationList = $this->Pagination->get($iPage, $iCount);
+    if($iCount > 0){
+      if(count($arPaginationList) === 1){
+        $arPaginationList = '';
+      }
+    }
+
+    $arProductList = $obProductList->page($iPage, $this->Pagination->getCountPerPage());
+
+    $this['iCount'] = $iCount;
+    $this['limit'] = $limit ?? '';
+    $this['arProductList'] = $arProductList;
+    $this['arPaginationList'] = $arPaginationList;
+    $this['arBreadcrumbs'] = $arBreadcrumbs;
+    $this['q'] = $q;
+}
+?>
+==
+
+{% put breadcrumbs %}
+  <div class="breadcrumb-holder">
+    <div class="container">
+      {% partial('components/breadcrumbs') arBreadcrumbs=arBreadcrumbs %}
+
+    </div>
+  </div>
+{% endput %}
+
+  {% if iCount > 0 %}
+
+    <section class="section-two-columns">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-md-12 col-12">
+
+            <h3>По вашему запросу "{{ input('q') }}" найдено:</h3>
+
+              {% partial('components/catalog/searchResults') arProductList=arProductList iPage=iPage title = 'Поиск' %}
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+  {% else %}
+    <div class="block-split ">
+      <div class="container">
+        <div class="block-split__row row no-gutters">
+          <div class="block-split__item block-split__item-content col-auto">
+            <div class="block">
+              <div class="products-view pt-5">
+                По запросу "{{ input('q') }}" ничего не найдено
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="block-space block-space--layout--before-footer"></div>
+      </div>
+    </div>
+  {% endif %}
+

@@ -1,0 +1,39 @@
+{% if slides %}
+    {% if __SELF__.property('custom_code') %}
+        {{ topcode|raw }}
+        {{ slidecode|raw }}
+        {{ bottomcode|raw }}
+    {% else %}
+        <!-- Start Hero Area -->
+        <section class="section hero-area">
+            <div class="hero-slider owl-carousel owl-controls-1" data-nav="true" data-loop="{{ __SELF__.property('loop') ? 'true':'false' }}" data-autoplay="{{ __SELF__.property('autoplay') ? 'true':'false' }}" data-smart-speed="1000" data-autoplay-timeout="10000">
+                {% for slide in slides %}
+                <div class="hero-slider-item slider-bg-center " data-bg-img="{{ slide.image.thumb(slide.width,slide.height,{'mode':'crop'}) }}">
+                    <div class="hero-overlay">
+                        <div class="hero-overlay-wrapper">
+                            <div class="pos-tb-center hero-overlay-inner">
+                                <div class="container">
+                                    <div class="row row-tb-20">
+                                        <div class="col-md-12{% if slide.text_align == 'center' %} text-center{% endif %}">
+                                            {% if slide.subtitle %}<h2 style="font-size: {{ slide.subtitle_size }}px !important;{% if slide.subtitle_color %} color: {{ slide.subtitle_color }} !important; {% endif %}" class="mb-10">{{ slide.subtitle }}</h2>{% endif %}
+                                            <h1 style="font-size: {{ slide.title_size }}px !important;{% if slide.title_color %} color: {{ slide.title_color }} !important; {% endif %}" class="t-uppercase mb-20">{{ slide.title }}</h1>
+                                            {% if slide.description %}<p{% if slide.description_color %} style="color: {{ slide.description_color }} !important;"{% endif %} class="mb-30 color-lighter h4">{{ slide.description }}</p>{% endif %}
+                                            {% if slide.button_1_active and slide.button_1_text and slide.button_1_url %}
+                                            <a {% if slide.button_1_color %}style="background-color:{{ slide.button_1_color }}; border-color:{{ slide.button_1_color }};" {% endif %}href="{{ slide.button_1_url }}" class="btn btn-rounded btn-wt btn-lg mr-10 mb-20">{{ slide.button_1_text }}</a>
+                                            {% endif %}
+                                            {% if slide.button_2_active and slide.button_2_text and slide.button_2_url %}
+                                            <a href="{{ slide.button_2_url }}" class="btn btn-rev btn-rounded btn-o btn-lg mb-20">{{ slide.button_2_text }}</a>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+        <!-- End Hero Area -->
+    {% endif %}
+{% endif %}

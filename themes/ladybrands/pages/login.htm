@@ -1,0 +1,106 @@
+title = "Аутентификация"
+url = "/login"
+layout = "default"
+is_hidden = 0
+
+
+==
+<?php
+  function onInit() {
+  $arBreadcrumbs[] = [
+    'name' => 'Аутентификация',
+    'url' => \Cms\Classes\Page::url('login'),
+    'active' => false,
+  ];
+
+  $arBreadcrumbs[] = [
+    'name' => 'Главная',
+    'url' => \Cms\Classes\Page::url('index'),
+    'active' => false,
+  ];
+
+  $arBreadcrumbs = array_reverse($arBreadcrumbs);
+
+  $this['arBreadcrumbs'] = $arBreadcrumbs;
+
+  }
+
+  function onStart() {
+
+  }
+?>
+==
+{% put breadcrumbs %}
+  <div class="breadcrumb-holder">
+    <div class="container">
+      {% partial('components/breadcrumbs') arBreadcrumbs=arBreadcrumbs %}
+    </div>
+  </div>
+{% endput %}
+
+<section class="section-checkout">
+  <div class="container">
+    <div class="phase-title current">
+      <h1>Войти</h1>
+    </div>
+    <div class="row-fluid">
+      <div class="span12">
+        <div class="form-holder">
+          <form data-request="{{account}}::onSignin" data-request-redirect="/account">
+
+            <div class="control-group">
+              <div class="controls">
+                <div class="form-label ">Логин</div>
+                <input type="text"  name="login"  class="required span12 cusmo-input" required />
+              </div>
+            </div>
+
+            <div class="control-group">
+              <div class="controls">
+                <div class="form-label ">Пароль</div>
+                <input type="password"  name="password" class="required span12 cusmo-input"  />
+              </div>
+            </div>
+
+            <div class="rememberme">
+              <input type="checkbox" class="iCheck" name="remember" value="1" > Запомнить меня
+            </div>
+            <div class="forget-password">
+              <a href="/forgot-password" target="_blank" >восстановить пароль</a>
+            </div>
+            <div class="button-holder">
+            <button class="cusmo-btn narrow pull-right" type="submit" >Войти</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-homepage-subscribe">
+  <div class="container">
+    <div class="big-circle">
+
+      get the
+      <div class="big"><span>$</span>10</div>
+      cupon
+
+    </div>
+    <div class="offer-text">
+      Sign in for our newsletter and recieve a ten dollars cupon
+    </div>
+    <div class="email-holder">
+
+      <div class="email-field">
+
+        <form>
+          <input class=" required email" name="email" data-placeholder="Enter here your email address..." />
+          <button class="newsletter-submit-btn" type="submit" value=""><i class="icon-plus"></i></button>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+</section>

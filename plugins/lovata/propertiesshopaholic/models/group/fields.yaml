@@ -1,0 +1,18 @@
+fields:
+    name:
+        label: 'lovata.toolbox::lang.field.name'
+        span: left
+        type: text
+        required: true
+    code:
+        label: 'lovata.toolbox::lang.field.code'
+        span: left
+        type: text
+        required: true
+        preset:
+            field: name
+            type: slug
+    description:
+        label: 'lovata.toolbox::lang.field.description'
+        type: textarea
+        span: left

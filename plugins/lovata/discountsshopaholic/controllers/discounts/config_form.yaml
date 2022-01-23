@@ -1,0 +1,16 @@
+name: 'lovata.discountsshopaholic::lang.discount.name'
+modelClass: Lovata\DiscountsShopaholic\Models\Discount
+form: $/lovata/discountsshopaholic/models/discount/fields.yaml
+defaultRedirect: lovata/discountsshopaholic/discounts
+create:
+    title: 'backend::lang.form.create_title'
+    redirect: 'lovata/discountsshopaholic/discounts/update/:id'
+    redirectClose: lovata/discountsshopaholic/discounts
+    flashSave: 'lovata.toolbox::lang.message.create_success'
+update:
+    title: 'backend::lang.form.update_title'
+    redirect: lovata/discountsshopaholic/discounts
+    redirectClose: lovata/discountsshopaholic/discounts
+    flashSave: 'lovata.toolbox::lang.message.update_success'
+    flashDelete: 'lovata.toolbox::lang.message.delete_success'
+pdiscount: {  }

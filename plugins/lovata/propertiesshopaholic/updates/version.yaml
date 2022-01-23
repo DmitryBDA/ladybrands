@@ -1,0 +1,86 @@
+1.0.0:
+    - 'Initialize plugin.'
+    - table_create_groups.php
+    - table_create_measure.php
+    - table_create_properties_value.php
+    - table_create_category_link.php
+    - table_create_properties.php
+1.0.1:
+    - 'Adding additional cache cleaning for the sorted list of properties and groups, after the creation of a new element. Requires Toolbox plugin version 1.3.0 and later.'
+1.1.0:
+    - 'Add "settings" field to PropertyItem class object'
+1.1.1:
+    - 'Added check for isNested flag when expanding forms'
+1.1.2:
+    - 'Fixed bug in the PropertyCollection::group method, if t\he property is not attached to any group'
+1.2.0:
+    - 'Refactoring *Event, *Model, *Item, *Collection classes. Requires Toolbox plugin version 1.10.0 and later.'
+1.3.0:
+    - '!!! Adding PropertySet model. Changed database structure. Logic for storing values of products properties has been changed. Empty property values are not stored in database. Remove propertyHasValue(), notEmpty(), unique() methods from PropertyValueCollection class. Add code(), getByCode() methods to PropertyCollection class. Add PropertySetCollection, PropertySetItem classes.'
+    - table_create_properties_set.php
+    - table_create_properties_set_link.php
+    - seeder_transfer_category_link.php
+    - table_remove_category_link.php
+    - table_create_properties_value_link.php
+    - table_create_properties_values.php
+    - seeder_transfer_property_value.php
+    - table_remove_properties_value.php
+1.3.1:
+    - 'Fix error in PropertyItem object, if product/offer property value is empty.'
+1.3.2:
+    - 'Fixed saving of property values whose "slug" have empty value.'
+1.3.3:
+    - 'Fixed saving of property values that contain special characters.'
+1.4.0:
+    - 'Update license file.'
+1.5.0:
+    - 'Add CodeField trait to Group model.'
+1.6.0:
+    - 'Changed: only property values of active products and offers are stored in the cache.'
+1.7.0:
+    - 'Added import properties from CSV file. Added import product/offer property values from CSV file. Added supported types of properties: number, rich editor, single checkbox, switch, balloon selector, tag list, radio. Adding ability to use multilanguage for fields with type select/checkbox list. Requires Toolbox plugin version 1.19.0 and later.'
+    - table_update_properties_values_add_label_field.php
+    - table_create_properties_variant_link.php
+    - seeder_transfer_property_settings_values.php
+1.7.1:
+    - 'Fixed display of valid property values in backend.'
+1.7.2:
+    - 'Added primary key to lovata_properties_shopaholic_variant_link table.'
+    - table_update_properties_variant_link_add_primary.php
+1.7.3:
+    - 'Added settings to help fix the problem with saving of multi-byte character values for PropertyValue model. Thanks for contribution pikanji.'
+1.8.0:
+    - 'Added "global" flag to PropertySet model. Added "Inherit property sets" to Category model. Added setting "Enable for categories inheriting property sets from parent categories".'
+    - table_update_properties_set_add_global_field.php
+    - table_update_categories_add_inherit_property_set_field.php
+1.8.1:
+    - 'Fixed saving property values​with empty value for non-default language. Menu items moved to settings menu.'
+1.8.2:
+    - 'Fixed saving property values, after offer/product was created.'
+1.8.3:
+    - 'Fixed bug of extending import config in Offers controller.'
+1.9.0:
+    - 'Added customizable import from xml file. Thanks to Rolands Zeltins. His donation made this feature available for everyone.'
+1.9.1:
+    - 'Fixed bug with deactivating items in import from XML files.'
+1.9.2:
+    - 'Added try/catch section CommonPropertyHelper::getValueObject() method.'
+1.10.0:
+    - 'Added ability to partially import product/offer property values when using improt from CSV file.'
+2.0.0:
+    - '!!! "Measure" model has been moved to Shopaholic plugin. Table "lovata_properties_shopaholic_measure" renamed to "lovata_shopaholic_measure". Requires Shopaholic plugin version 1.25.0  and later.'
+    - table_remove_measure.php
+2.0.1:
+    - 'Fixed saving property values ​​and translations for fields with type "checkbox list" and "select".'
+2.0.2:
+    - 'Fixed dynamic method in CategoryItem, ProductItem, OfferItem classes. Requires Toolbox plugin version 1.28.1 and later.'
+2.0.3:
+    - 'Fixed saving property values​with type "taglist".'
+2.0.4:
+    - 'Added copy method to PropertySetCollection::code().'
+2.1.0:
+    - 'Added composer.json to plugin'
+2.2.0:
+    - 'Reduced count of database queries, if cache is empty. Requires Toolbox plugin version 1.32.0 and later.'
+2.2.1:
+    - 'Fixed PropertyCollection and PropertyValueCollection classes. Requires Toolbox plugin version 1.34.0 and later.'

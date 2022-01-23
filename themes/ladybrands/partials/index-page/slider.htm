@@ -1,0 +1,36 @@
+<section id="home" class="home-slider">
+  <div class="container">
+    <div class="slider flexslider ">
+             {% for obSlide in obSlideList %}
+
+          {% if obSlide.image.title is not empty %}
+            {% set imageALT = obSlide.image.title %}
+          {% elseif obSlide.image.description is not empty %}
+            {% set imageALT = obSlide.image.description %}
+          {% else %}
+            {% set imageALT = obSlide.image.file_name %}
+          {% endif %}
+
+          <div >
+            <picture>
+              <source type="image/webp" srcset="{{ obSlide.image.path | resize(auto, obSlide.height, { 'mode': 'auto', 'quality': '90', 'extension': 'webp' }) }}">
+              <img class="index-slider__image" loading="lazy" src="{{ obSlide.image.path | resize(auto, obSlide.height, { 'mode': 'fit'}) }}" alt="{{imageALT}}">
+            </picture>
+            <div class="flex-caption">
+              <h1>{{obSlide.subtitle}}</h1>
+              <div class="medium">
+                <span>{{obSlide.title}}</span>
+              </div>
+              <div class="small">
+                <span>{{obSlide.description}}</span>
+              </div>
+              <div>
+                <span><a class="cusmo-btn"  href="{{obSlide.button_1_url}}">{{obSlide.button_1_text}}</a></span>
+              </div>
+
+            </div>
+          </div>
+        {% endfor %}
+    </div>
+  </div>
+</section>

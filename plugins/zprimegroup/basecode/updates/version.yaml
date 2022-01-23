@@ -1,0 +1,16 @@
+1.0.0:
+    - 'Init plugin'
+
+
+1.0.6:
+  - 'Добавить поле product_id в reviews'
+  - add_field_reviews.php
+1.0.8:
+  - 'Добавить поле телефона в таблицу users'
+  - add_field_users.php
+1.1.0:
+  - 'Добавить поле описание в таблицу продукта'
+  - add_shopaholic_products_2.php
+1.1.1:
+  - 'Добавить поле показать категорию'
+  - add_shopaholic_categories.php

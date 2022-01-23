@@ -1,0 +1,10 @@
+1.0.0:
+    - 'initialize plugin.'
+    - table_create_labels_shopaholic_labels.php
+    - table_create_labels_shopaholic_product_relation.php
+1.0.1:
+    - 'Added permission.label string to lang file.'
+1.0.2:
+    - 'Removed index by slug field in migrations.'
+1.0.3:
+    - 'Fixed dynamic method in ProductItem class. Requires Toolbox plugin version 1.28.1 and later.'

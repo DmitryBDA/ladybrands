@@ -1,0 +1,15 @@
+name: 'lovata.couponsshopaholic::lang.coupon_group.name'
+modelClass: Lovata\CouponsShopaholic\Models\CouponGroup
+form: $/lovata/couponsshopaholic/models/coupongroup/fields.yaml
+defaultRedirect: lovata/couponsshopaholic/coupongroups
+create:
+    title: 'backend::lang.form.create_title'
+    redirect: 'lovata/couponsshopaholic/coupongroups/update/:id'
+    redirectClose: lovata/couponsshopaholic/coupongroups
+    flashSave: 'lovata.toolbox::lang.message.create_success'
+update:
+    title: 'backend::lang.form.update_title'
+    redirect: lovata/couponsshopaholic/coupongroups
+    redirectClose: lovata/couponsshopaholic/coupongroups
+    flashSave: 'lovata.toolbox::lang.message.update_success'
+    flashDelete: 'lovata.toolbox::lang.message.delete_success'

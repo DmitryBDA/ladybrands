@@ -1,0 +1,16 @@
+  {% set obCartPositionList = Cart.get() %}
+  <div class="basket-item-count">
+    {{ obCartPositionList.getTotalQuantity() }}
+  </div>
+  <div class="total-price-basket">
+    {{ obCartPositionList.getTotalPrice() }} ₽
+  </div>
+
+  <div>
+    <a data-hover="dropdown" href="/cart">
+      <img alt="basket" src="{{ 'assets/images/icon-basket.png'|theme }}"/>
+    </a>
+
+  </div>
+
+

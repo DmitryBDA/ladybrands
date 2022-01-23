@@ -1,0 +1,12 @@
+plugin:
+    name: 'Reviews'
+    description: 'Add customers reviews and testimonials to your sites.'
+    author: 'Vojta Svoboda'
+    icon: icon-star-half-o
+permissions:
+    vojtasvoboda.reviews.reviews:
+        tab: Review management
+        label: Review management
+    vojtasvoboda.reviews.categories:
+        tab: Review management
+        label: Review categories management

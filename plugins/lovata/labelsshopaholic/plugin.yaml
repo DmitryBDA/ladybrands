@@ -1,0 +1,11 @@
+plugin:
+    name: 'lovata.labelsshopaholic::lang.plugin.name'
+    description: 'lovata.labelsshopaholic::lang.plugin.description'
+    author: Lovata
+    icon: icon-tags
+    homepage: ''
+permissions:
+    shopaholic-menu-labels:
+        tab: 'lovata.shopaholic::lang.tab.permissions'
+        label: 'lovata.labelsshopaholic::lang.permission.label'
+        order: 100

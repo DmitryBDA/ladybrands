@@ -1,0 +1,20 @@
+1.0.0:
+    - 'Initialize plugin.'
+    - create_table_discounts.php
+    - create_table_discount_product.php
+    - create_table_discount_offer.php
+    - create_table_discount_category.php
+    - create_table_discount_brand.php
+    - create_table_discount_tag.php
+    - update_table_offers_add_discount_field.php
+1.0.1:
+    - 'Fixed error with queue job class.'
+1.1.0:
+    - 'Updating discount calculation logic, after adding multicurrency.'
+    - update_table_offers_remove_discount_value_field.php
+1.1.1:
+    - 'Removed saving discount_price field in Offer model'
+1.1.2:
+    - 'Fixed error of integration with Tags for Shopaholic plugin.'
+1.1.3:
+    - 'Fixed saving of offer prices after applying the discount.'

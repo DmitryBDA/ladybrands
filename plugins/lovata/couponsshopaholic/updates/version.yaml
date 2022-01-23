@@ -1,0 +1,36 @@
+1.0.0:
+    - 'Initialize plugin.'
+    - create_table_coupons.php
+    - create_table_coupon_groups.php
+    - create_table_coupon_order.php
+    - create_table_coupon_cart.php
+    - create_table_coupon_group_brand.php
+    - create_table_coupon_group_category.php
+    - create_table_coupon_group_offer.php
+    - create_table_coupon_group_product.php
+    - create_table_coupon_group_shipping_type.php
+    - create_table_coupon_group_tag.php
+1.0.1:
+    - 'Fixed creation of an order promo mechanisms via add() method.'
+1.0.2:
+    - 'Fixed sorting by total_usage field in backend (Coupon model).'
+1.1.0:
+    - 'Added processing of "shipping_type_id" field in onAddCoupon, onRemoveCoupon methods.'
+1.1.1:
+    - 'Fixed cache clearing after attaching items to group of coupons.'
+1.1.2:
+    - 'Added validation rules for "promo_mechanism_id" field in CouponGroup model.'
+1.1.3:
+    - 'Removed index by code field in migration files.'
+1.1.4:
+    - 'Fixed bug with applying discounts for linked offers and products.'
+1.1.5:
+    - 'Fixed bug with applying discounts for linked only offers or only products.'
+1.2.0:
+    - 'Adding support of mechanisms to increase the price of products and orders. Requires Orders for Shopaholic plugin version 1.25.0 and later.'
+1.2.1:
+    - 'Fixed condition in CouponGroup model for PostgreSQL.'
+1.3.0:
+    - 'Added composer.json to plugin'
+1.4.0:
+    - 'Reduced count of database queries, if cache is empty. Requires Toolbox plugin version 1.32.0 and later.'

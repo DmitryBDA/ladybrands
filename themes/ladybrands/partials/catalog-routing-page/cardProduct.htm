@@ -1,0 +1,293 @@
+{% set obCartPositionList = Cart.get() %}
+
+{% if obProduct.preview_image.title is not empty %}
+  {% set imageALT = obProduct.preview_image.title %}
+{% elseif obProduct.preview_image.description is not empty %}
+  {% set imageALT = obProduct.preview_image.description %}
+{% else %}
+  {% set imageALT = obProduct.name %}
+{% endif %}
+
+{% set obOffer = obProduct.offer.first() %}
+{% set obPropertyList = obProduct.property %}
+
+<div class="page-content">
+  <div class="products-page-head">
+    <h1>{{ obProduct.name }}</h1>
+
+  </div>
+  <div class="row">
+    <div class="col-md-7">
+
+      {% set obLabelList = obProduct.label.active().sort() %}
+
+      {% if obLabelList.isNotEmpty() == true %}
+
+        {% for obLabel in obLabelList %}
+          {% if obLabel.code == 'new' %}
+            <div class="dot-badge">
+              <img src="{{ 'assets/images/new.png'|theme }}" alt="new" width="40">
+            </div>
+          {% endif %}
+
+          {% if obLabel.code == 'hit' %}
+            <div class="dot-badge">
+              <img src="{{ 'assets/images/hit.png'|theme }}" alt="хит" width="40">
+            </div>
+          {% endif %}
+        {% endfor %}
+
+      {% endif %}
+      <div class="slider-for">
+        {% if obProduct.preview_image %}
+          <div
+            data-thumb="{{ obProduct.preview_image | resize(375, 375, { 'mode': 'fit', 'quality': '85', 'extension': 'webp' }) }}">
+            <a href="{{ obProduct.preview_image | resize(1000, 1000, { 'mode': 'fit'}) }}" data-fancybox="product">
+              <picture>
+                <source type="image/webp"
+                        srcset="{{ obProduct.preview_image | resize(375, 375, { 'mode': 'fit', 'quality': '85', 'extension': 'webp' }) }}">
+                <img loading="lazy" src="{{ obProduct.preview_image | resize(375, 375, { 'mode': 'fit'}) }}"
+                     alt="{{ imageALT }}" class="m-auto">
+              </picture>
+            </a>
+          </div>
+        {% endif %}
+
+        {% for image in obProduct.images %}
+
+          {% if image.title is not empty %}
+            {% set imageALT = image.title %}
+          {% elseif image.description is not empty %}
+            {% set imageALT = image.description %}
+          {% else %}
+            {% set imageALT = obProduct.name %}
+          {% endif %}
+
+          <div
+            data-thumb="{{ image.path | resize(70, 70, { 'mode': 'crop', 'quality': '85', 'extension': 'webp' }) }}">
+            <a href="{{ image.path | resize(1000, 1000, { 'mode': 'fit'}) }}" data-fancybox="product">
+              <picture>
+                <source type="image/webp"
+                        srcset="{{ image.path | resize(375, 375, { 'mode': 'crop', 'quality': '85', 'extension': 'webp' }) }}">
+                <img loading="lazy" src="{{ image.path | resize(375, 375, { 'mode': 'crop'}) }}"
+                     alt="{{ imageALT }}" width="375" height="375" class="img-fluid">
+              </picture>
+            </a>
+          </div>
+        {% endfor %}
+
+      </div>
+
+
+      {% if obProduct.images %}
+
+        <div class="slider-nav">
+
+          {% if obProduct.preview_image %}
+            <div
+              data-thumb="{{ obProduct.preview_image | resize(70, 70, { 'mode': 'crop', 'quality': '85', 'extension': 'webp' }) }}">
+              <picture>
+                <source type="image/webp"
+                        srcset="{{ obProduct.preview_image | resize(70, 70, { 'mode': 'crop', 'quality': '85', 'extension': 'webp' }) }}">
+                <img loading="lazy" src="{{ obProduct.preview_image | resize(70, 70, { 'mode': 'crop'}) }}"
+                     alt="{{ imageALT }}" width="70" height="70" class="img-fluid">
+              </picture>
+
+            </div>
+          {% endif %}
+
+          {% for image in obProduct.images %}
+
+            {% if image.title is not empty %}
+              {% set imageALT = image.title %}
+            {% elseif image.description is not empty %}
+              {% set imageALT = image.description %}
+            {% else %}
+              {% set imageALT = obProduct.name %}
+            {% endif %}
+
+            <div
+              data-thumb="{{ image.path | resize(70, 70, { 'mode': 'crop', 'quality': '85', 'extension': 'webp' }) }}">
+              <picture>
+                <source type="image/webp"
+                        srcset="{{ image.path | resize(70, 70, { 'mode': 'crop', 'quality': '85', 'extension': 'webp' }) }}">
+                <img loading="lazy" src="{{ image.path | resize(70, 70, { 'mode': 'crop'}) }}"
+                     alt="{{ imageALT }}" width="70" height="70" class="img-fluid">
+              </picture>
+            </div>
+          {% endfor %}
+
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="col-md-5">
+      <div class="product-info-box">
+        {% if rating %}
+          <div class="star-holder">
+            <strong>Рейтинг</strong>
+            <div style="float: right;" class="rating-mini ml-2">
+              {% for item in 1..rating %}
+                <span style="cursor: default;" class="stop active"></span>
+              {% endfor %}
+            </div>
+            {{ rating }}
+          </div>
+        {% endif %}
+
+        <div class="info-holder mt-2 mb-2 small">
+          {% if obOffer.quantity > 0 %}
+            <strong class="text-success ">В наличие</strong>
+          {% else %}
+            <strong style="color: red">Отсутствует</strong>
+          {% endif %}
+        </div>
+
+        <div class="info-holder">
+
+          {{ obProduct.preview_text|raw }}
+
+        </div>
+
+        {% if obProduct.property_value_array is not empty() %}
+          <div class="info-holder">
+            <div class="h6 mt-3">Свойства</div>
+            <ul class="property_set">
+              {% for obProperty in obPropertyList if obProperty.hasValue() %}
+                <li class="">
+                  <div class="flex-parent">
+                    <div class="flex-child">{{ obProperty.name }}</div>
+                    <div
+                      class="flex-child">{{ obProperty.property_value.getValueString() }} {{ obProperty.measure.name }}</div>
+                  </div>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
+
+        {% if obProduct.brand.isNotEmpty() %}
+          <div class="info-holder">
+            <div class="h6 mt-3">Страна бренда</div>
+            {% if obProduct.brand.code %}
+              <div>{{ obProduct.brand.code }}</div>
+            {% endif %}
+          </div>
+        {% endif %}
+
+        {# <hr>
+        <div class="drop-downs-holder">
+          <div class="drop-selector capacity-selector">
+            <span>Pick capacity</span>
+
+            <select class="chosen-select">
+              <option value="20ml">20 ml</option>
+              <option value="30ml">30 ml</option>
+              <option value="40ml">40 ml</option>
+              <option value="50ml">50 ml</option>
+              <option value="60ml">60 ml</option>
+              <option value="70ml">70 ml</option>
+              <option value="80ml">80 ml</option>
+              <option value="90ml">90 ml</option>
+              <option value="100ml">100 ml</option>
+            </select>
+
+          </div>
+
+          <div class="drop-selector">
+            <span>amount</span>
+            <select class="chosen-select">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+
+            </select>
+          </div>
+        </div>
+        #}
+
+        <div class="price-holder">
+          <div class="price">
+            <span>{{ obOffer.price }}{{ obOffer.currency }}</span>
+            {% if obOffer.discount_price_value > 0 %}
+              <span class="old">{{ obOffer.old_price }}{{ obOffer.currency }}</span>
+            {% endif %}
+          </div>
+        </div>
+
+
+        <div class="buttons-holder _shopaholic-product-wrapper" data-product-id="{{ obProduct.id }}">
+          <input type="hidden" name="quantity" value="1">
+          <input type="hidden" name="offer_id" value="{{ obOffer.id }}">
+          {% partial('components/btnAddCart') obCartPositionList=obCartPositionList obOffer = obOffer %}
+
+          {% if obList.has(obProduct.id) %}
+            <a class="add-to-wishlist-btn _btn_wishlist" data-product-id="{{ obProduct.id }}" href="#"><i
+                class="fa fa-minus"></i> Удалить из избранного</a>
+          {% else %}
+            <a class="add-to-wishlist-btn _btn_wishlist" data-product-id="{{ obProduct.id }}" href="#"><i
+                class="fa fa-plus"></i> Добавить в избранное</a>
+          {% endif %}
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+  <div class="product-tabs">
+    <div class="controls-holder nav-tabs">
+      <ul class="nav">
+        <li><a data-toggle="tab" class="active" href="#description">Описание</a></li>
+        <li><a data-toggle="tab" href="#reviews">Отзывы ({{ countReviews }})</a></li>
+      </ul>
+    </div>
+
+    <div class="tab-content">
+
+      <div id="description" class=" active tab-pane ">
+
+
+        {% if obProduct.description %}
+
+          {{ obProduct.description|striptags('<br><p><img>')|raw }}
+
+        {% endif %}
+
+
+        {% if obProduct.description_1 %}
+          <div>
+            <h6>Способ применения</h6>
+            {{ obProduct.description_1|striptags('<br><p><img>')|raw }}
+          </div>
+        {% endif %}
+
+        {% if obProduct.description_2 %}
+          <div>
+            <h6>Результат</h6>
+            {{ obProduct.description_2|striptags('<br><p><img>')|raw }}
+          </div>
+        {% endif %}
+
+        {% if obProduct.description_3 %}
+          <div>
+            <h6>Состав</h6>
+            {{ obProduct.description_3|striptags('<br><p><img>')|raw }}
+          </div>
+        {% endif %}
+      </div>
+
+
+      {% partial('catalog-routing-page/card-prouct-page/reviews') obProduct=obProduct %}
+
+    </div>
+  </div>
+
+</div>

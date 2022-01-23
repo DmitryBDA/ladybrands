@@ -1,0 +1,57 @@
+url = "/wishlist"
+layout = "default"
+title = "избранное"
+is_hidden = 0
+
+[ProductList]
+sorting = "no"
+==
+<?php
+function onInit() {
+
+  $arBreadcrumbs[] = [
+    'name' => 'Избранное',
+    'url' => '',
+    'active' => true,
+  ];
+
+  $arBreadcrumbs[] = [
+    'name' => 'Главная',
+    'url' => \Cms\Classes\Page::url('index'),
+    'active' => false,
+  ];
+
+  $arBreadcrumbs = array_reverse($arBreadcrumbs);
+
+  $this['arBreadcrumbs'] = $arBreadcrumbs;
+
+}
+
+function onStart() {
+
+
+}
+?>
+==
+{% put breadcrumbs %}
+  <div class="breadcrumb-holder">
+    <div class="container">
+      {% partial('components/breadcrumbs') %}
+    </div>
+  </div>
+{% endput %}
+
+<section class="section-shopping-cart">
+  <div class="container">
+    <div class="row-fluid">
+      <div class="span12">
+        <div class="page-content shopping-cart-page _wishlist_list_wrapper">
+
+          {% partial 'wishlist-page/position' %}
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+

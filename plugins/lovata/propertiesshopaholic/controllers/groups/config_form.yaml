@@ -1,0 +1,15 @@
+name: 'lovata.propertiesshopaholic::lang.group.name'
+form: $/lovata/propertiesshopaholic/models/group/fields.yaml
+modelClass: Lovata\PropertiesShopaholic\Models\Group
+defaultRedirect: lovata/propertiesshopaholic/groups
+create:
+    title: 'backend::lang.form.create_title'
+    redirect: 'lovata/propertiesshopaholic/groups/update/:id'
+    redirectClose: lovata/propertiesshopaholic/groups
+    flashSave: 'lovata.toolbox::lang.message.create_success'
+update:
+    title: 'backend::lang.form.update_title'
+    redirect: lovata/propertiesshopaholic/groups
+    redirectClose: lovata/propertiesshopaholic/groups
+    flashSave: 'lovata.toolbox::lang.message.update_success'
+    flashDelete: 'lovata.toolbox::lang.message.delete_success'

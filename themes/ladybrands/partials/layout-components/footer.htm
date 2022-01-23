@@ -1,0 +1,54 @@
+<section class="section-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-6 col-sm-3">
+        <div class="footer-links-holder">
+          <h2>Информация</h2>
+          <ul class="list-group">
+            {% for item in menu1 %}
+              <li><a href="{{ item.url }}">{{  item.title }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-6 col-sm-3">
+        <div class="footer-links-holder">
+          <h2>УСЛОВИЯ</h2>
+          <ul class="list-group">
+            {% for item in menu2 %}
+              <li><a href="{{ item.url }}">{{  item.title }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+      <div class="col-6 col-sm-3">
+        <div class="footer-links-holder">
+          <h2>СТАТЬИ</h2>
+          <ul class="list-group">
+            {% for item in menu3 %}
+              <li><a href="{{ item.url }}">{{  item.title }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+      <div class="col-6 col-sm-3">
+        <div class="footer-links-holder">
+          <h2>СВЯЗАТЬСЯ</h2>
+          <p>
+            Lady & Brands<br>
+            {{ SiteSettings.get('address') }}<br>
+            {{ SiteSettings.get('phone_1') }}
+          </p>
+          <ul class="nav social-icons">
+            <li><a href="{{ SiteSettings.get('telegram') }}" class="fa fa-facebook"></a></li>
+            <li><a href="{{ SiteSettings.get('whatsApp') }}" class="fa fa-whatsapp"></a></li>
+            <li><a href="{{ SiteSettings.get('instagram') }}" class="fa fa-instagram"></a></li>
+
+            <li><a href="{{ SiteSettings.get('viber') }}" class="fa fa-viber"></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,163 @@
+fields:
+    image:
+        label: 'dizoo.slider::lang.strings.slide_image'
+        mode: image
+        useCaption: 0
+        thumbOptions:
+            mode: crop
+            extension: auto
+        span: storm
+        required: 1
+        type: fileupload
+        cssClass: col-sm-6
+    width:
+        label: 'dizoo.slider::lang.strings.image_width'
+        span: storm
+        default: 1920
+        type: number
+        required: 1
+        cssClass: col-sm-3
+    height:
+        label: 'dizoo.slider::lang.strings.image_height'
+        span: storm
+        default: 900
+        type: number
+        required: 1
+        cssClass: col-sm-3
+    subtitle:
+        label: 'dizoo.slider::lang.strings.slide_subtitle'
+        span: storm
+        type: text
+        attributes:
+            maxlength: '40'
+        cssClass: col-sm-4
+#    subtitle_size:
+#        label: 'dizoo.slider::lang.strings.slide_font_size'
+#        span: storm
+#        type: number
+#        required: 1
+#        default: 24
+#        step: 1
+#        min: 1
+#        max: 100
+#        cssClass: col-sm-2
+    title:
+        label: 'dizoo.slider::lang.strings.slide_title'
+        span: storm
+        required: 1
+        type: text
+        attributes:
+            maxlength: '25'
+        cssClass: col-sm-4
+#    title_size:
+#        label: 'dizoo.slider::lang.strings.slide_font_size'
+#        span: storm
+#        type: number
+#        default: 60
+#        required: 1
+#        step: 1
+#        min: 1
+#        max: 100
+#        cssClass: col-sm-2
+    description:
+        label: 'dizoo.slider::lang.strings.slide_description'
+        size: small
+        span: storm
+        type: textarea
+        cssClass: col-sm-6
+        attributes:
+            maxlength: '255'
+    subtitle_color:
+        label: 'dizoo.slider::lang.strings.slide_subtitle_color'
+        type: colorpicker
+        availableColors: ['#000000', '#FFFFFF']
+        cssClass: col-sm-2
+        span: storm
+    title_color:
+        label: 'dizoo.slider::lang.strings.slide_title_color'
+        type: colorpicker
+        availableColors: ['#000000', '#FFFFFF']
+        cssClass: col-sm-2
+        span: storm
+    description_color:
+        label: 'dizoo.slider::lang.strings.slide_description_color'
+        type: colorpicker
+        availableColors: ['#000000', '#FFFFFF']
+        cssClass: col-sm-2
+        span: storm
+    text_align:
+        label: 'dizoo.slider::lang.strings.text_align'
+        options:
+            left: 'dizoo.slider::lang.strings.left'
+            center: 'dizoo.slider::lang.strings.center'
+        span: storm
+        default: left
+        type: balloon-selector
+        cssClass: col-sm-3
+    active:
+        label: 'dizoo.slider::lang.strings.active'
+        span: storm
+        default: 1
+        type: switch
+        cssClass: col-sm-12
+tabs:
+    fields:
+        button_1_active:
+            label: 'dizoo.slider::lang.strings.button_active'
+            span: auto
+            type: switch
+            tab: 'dizoo.slider::lang.strings.button_1'
+        button_1_color:
+            label: 'dizoo.slider::lang.strings.button_color'
+            span: left
+            trigger:
+                action: show
+                field: button_1_active
+                condition: checked
+            type: colorpicker
+            tab: 'dizoo.slider::lang.strings.button_1'
+        button_1_text:
+            label: 'dizoo.slider::lang.strings.button_text'
+            span: left
+            trigger:
+                action: show
+                field: button_1_active
+                condition: checked
+            type: text
+            tab: 'dizoo.slider::lang.strings.button_1'
+            attributes:
+                maxlength: '15'
+        button_1_url:
+            label: 'dizoo.slider::lang.strings.button_url'
+            span: left
+            trigger:
+                action: show
+                field: button_1_active
+                condition: checked
+            type: text
+            tab: 'dizoo.slider::lang.strings.button_1'
+        button_2_active:
+            label: 'dizoo.slider::lang.strings.button_active'
+            span: left
+            type: switch
+            tab: 'dizoo.slider::lang.strings.button_2'
+        button_2_text:
+            label: 'dizoo.slider::lang.strings.button_text'
+            span: left
+            trigger:
+                action: show
+                field: button_2_active
+                condition: checked
+            type: text
+            tab: 'dizoo.slider::lang.strings.button_2'
+            attributes:
+                maxlength: '15'
+        button_2_url:
+            label: 'dizoo.slider::lang.strings.button_url'
+            span: left
+            trigger:
+                action: show
+                field: button_2_active
+                condition: checked
+            type: text
+            tab: 'dizoo.slider::lang.strings.button_2'

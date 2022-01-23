@@ -1,0 +1,16 @@
+title: 'lovata.propertiesshopaholic::lang.group.list_title'
+modelClass: Lovata\PropertiesShopaholic\Models\Group
+list: $/lovata/propertiesshopaholic/models/group/columns.yaml
+recordUrl: 'lovata/propertiesshopaholic/groups/update/:id'
+noRecordsMessage: 'backend::lang.list.no_records'
+recordsPerPage: 10
+showSetup: true
+showCheckboxes: true
+showSorting: 1
+defaultSort:
+    column: sort_order
+    direction: asc
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'

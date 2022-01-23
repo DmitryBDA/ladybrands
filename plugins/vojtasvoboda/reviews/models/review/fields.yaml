@@ -1,0 +1,33 @@
+fields:
+    name:
+        label: Name
+        span: left
+        type: text
+    email:
+        label: Email
+        span: right
+        type: text
+    rating:
+        label: Rating
+        type: starrating
+tabs:
+    fields:
+        title:
+            tab: General
+            label: Title
+        content:
+            tab: General
+            label: Text
+            type: textarea
+            size: medium
+            span: full
+        approved:
+            tab: General
+            label: Approved
+            span: full
+            type: checkbox
+        categories:
+            tab: Categories
+            label: Categories
+            type: relation
+            nameFrom: name

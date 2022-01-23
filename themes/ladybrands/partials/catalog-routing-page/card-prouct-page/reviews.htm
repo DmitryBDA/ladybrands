@@ -1,0 +1,58 @@
+<div id="reviews" class=" tab-pane ">
+
+  {% if reviewsProd is not empty %}
+  <div class="recent-reviews">
+    {% for review in reviewsProd %}
+    <div class="review-item">
+      <div class="fluid">
+        <div class="col-12">
+          <div class="body">
+            <span class="date">{{ review.created_at|date('d.m.Y') }}</span>
+            <div style="float: right;" class="rating-mini ml-2">
+              {% for item in 1..review.rating %}
+              <span style="cursor: default;" class="stop active"></span>
+              {% endfor %}
+            </div>
+
+            {{ review.content|raw }}
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+    <hr>
+  </div>
+  {% endif %}
+
+  <form action="" class="_add_reviews">
+
+    <div class="star-holder pt-2 pb-2">
+      <strong>Оценка:</strong>
+      <div class="rating_star">
+        <div class="rating-mini">
+          <input id="input_num_rating" class="input_num_rating" type="hidden" name="rating" value="1">
+          {% for rating in 1..5 %}
+          <span data-num-rating="{{ rating }}" class="_rating_mini {% if loop.index == 1  %}active{% endif %}"></span>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <textarea placeholder="Ваш отзыв" name="textReview" class="span12" id="write-review-text"></textarea>
+
+    <input type="hidden" name="productId" value="{{ obProduct.id }}">
+    <div class="review-info">
+  {#    <div class="remaining-chars">
+        <span id="counter">210</span> символов
+      </div>#}
+
+
+        <button type="submit" class="cusmo-btn">Добавить отзыв</button>
+
+
+    </div>
+  </form>
+  <hr>
+
+
+</div>

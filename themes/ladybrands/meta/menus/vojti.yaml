@@ -1,0 +1,11 @@
+items:
+    -
+        title: Регистрация
+        type: cms-page
+        code: ''
+        reference: registration
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+name: Войти

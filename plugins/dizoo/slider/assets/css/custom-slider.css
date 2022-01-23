@@ -1,0 +1,11 @@
+.hero-slider-item {
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.slider-bg-center {
+    background-position: center center;
+}

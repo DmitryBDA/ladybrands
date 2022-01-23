@@ -1,0 +1,25 @@
+{% scripts %}
+<script>
+$(document).on('click', '._add_cupon', function(e){
+e.preventDefault()
+	
+	let code = $(this).attr('data-cupon-code')
+	
+	 $.request('Cart::onAddCoupon', {
+      data: {'coupon': code},
+      update: {
+	  'cart-page/cart-position': '._cart_list_wrapper',
+	  },
+	  success: function(obResponse) {
+      this.success(obResponse);
+		console.log(obResponse)
+    },
+      complete: function () {
+        //$.oc.flashMsg({ text: 'success text here', class: 'success class here' })
+      },
+      loading: $.oc.stripeLoadIndicator,
+    });
+	
+})
+
+</script>

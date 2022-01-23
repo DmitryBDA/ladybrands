@@ -1,0 +1,11 @@
+{
+    "name": "indikator/backend-plugin",
+    "type": "october-plugin",
+    "description": "This plugin extend the back-end to useful features and some new dashboard widgets.",
+    "homepage": "https://octobercms.com/plugin/indikator-backend",
+    "keywords": ["october", "octobercms"],
+    "license": "MIT",
+    "require": {
+        "composer/installers": "~1.0"
+    }
+}
